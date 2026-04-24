@@ -149,4 +149,8 @@ export type UiMessages = {
 		readonly en: string;
 		readonly es: string;
 	};
+	readonly whatsappWidget: {
+		readonly label: string;
+		readonly message: string;
+	};
 };

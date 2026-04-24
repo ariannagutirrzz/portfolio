@@ -258,4 +258,8 @@ export const en: UiMessages = {
 		en: 'EN',
 		es: 'ES',
 	},
+	whatsappWidget: {
+		label: 'Chat on WhatsApp',
+		message: 'Hi Arianna, I found your portfolio and want to discuss a project.',
+	},
 };

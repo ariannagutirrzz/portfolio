@@ -259,4 +259,8 @@ export const es: UiMessages = {
 		en: 'EN',
 		es: 'ES',
 	},
+	whatsappWidget: {
+		label: 'Chatear por WhatsApp',
+		message: 'Hola Arianna, vi tu portafolio y quiero conversar sobre un proyecto.',
+	},
 };
