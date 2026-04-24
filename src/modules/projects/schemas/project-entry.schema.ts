@@ -7,6 +7,11 @@ export const projectEntrySchema = z.object({
 	summary: z.string(),
 	problemSolved: z.string(),
 	architectureUsed: z.string(),
+	/** Spanish copy for `locale === 'es'`; falls back to English fields when omitted. */
+	titleEs: z.string().optional(),
+	summaryEs: z.string().optional(),
+	problemSolvedEs: z.string().optional(),
+	architectureUsedEs: z.string().optional(),
 	techStack: z.array(z.string()),
 	year: z.string(),
 	link: z.string().optional(),

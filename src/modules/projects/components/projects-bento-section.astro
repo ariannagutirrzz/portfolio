@@ -2,6 +2,7 @@
 import type { CollectionEntry } from 'astro:content';
 import type { ProjectCardPayload } from '../schemas/project-card-payload';
 import type { UiMessages } from '../../i18n/schemas/ui-messages';
+import { resolveProjectCardForLocale } from '../utils/resolve-project-card-for-locale';
 import { ProjectsWorkSectionMotion } from './projects-work-section-motion';
 
 type Props = {
@@ -10,10 +11,9 @@ type Props = {
 };
 
 const { messages, projects } = Astro.props;
-const payloads: ProjectCardPayload[] = projects.map((entry: CollectionEntry<'projects'>) => ({
-	id: entry.id,
-	...entry.data,
-}));
+const payloads: ProjectCardPayload[] = projects.map((entry: CollectionEntry<'projects'>) =>
+	resolveProjectCardForLocale(entry, messages.locale),
+);
 ---
 
 <ProjectsWorkSectionMotion
