@@ -1,0 +1,59 @@
+---
+import BaseLayout from '../../../layouts/base-layout.astro';
+import { getMessages } from '../../i18n/get-messages';
+import type { Locale } from '../../i18n/schemas/ui-messages';
+import type { ServiceItemCopy } from '../../i18n/schemas/ui-messages';
+import { publicIdentity } from '../../site-shell/constants/public-identity';
+
+type Props = {
+	readonly locale: Locale;
+};
+
+const { locale } = Astro.props;
+const messages = getMessages(locale);
+const homeHref: string = `/${locale}/`;
+const services: readonly ServiceItemCopy[] = messages.servicesPage.items;
+const whatsappNumber: string = publicIdentity.phone.replace(/[^0-9]/g, '');
+function buildWhatsappHref(serviceTitle: string): string {
+	const text: string = `${messages.servicesPage.whatsappMessagePrefix} ${serviceTitle}`;
+	return `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(text)}`;
+}
+---
+
+<BaseLayout locale={locale} messages={messages} title={messages.servicesPage.title} description={messages.servicesPage.intro}>
+	<section class="border-b border-white/10 px-6 py-24 sm:px-10 lg:px-16">
+		<div class="mx-auto max-w-5xl">
+			<p class="text-xs font-semibold uppercase tracking-[0.28em] text-accent">{messages.nav.services}</p>
+			<h1 class="mt-4 font-serif text-4xl tracking-tight text-pearl sm:text-5xl">{messages.servicesPage.title}</h1>
+			<p class="mt-4 max-w-3xl text-lg leading-relaxed text-mist">{messages.servicesPage.intro}</p>
+			<p class="mt-8">
+				<a href={homeHref} class="text-sm font-medium text-accent underline-offset-4 transition hover:text-pearl hover:underline">
+					{messages.servicesPage.backHome}
+				</a>
+			</p>
+			<ul class="mt-14 grid grid-cols-1 gap-5 md:grid-cols-2">
+				{
+					services.map((service: ServiceItemCopy) => (
+						<li class="glass-panel rounded-2xl border border-white/10 p-6">
+							<h2 class="font-serif text-2xl text-pearl">{service.title}</h2>
+							<p class="mt-3 text-sm leading-relaxed text-mist">{service.summary}</p>
+							<ul class="mt-5 space-y-2">
+								{service.deliverables.map((deliverable: string) => (
+									<li class="text-sm text-pearl/90">• {deliverable}</li>
+								))}
+							</ul>
+							<a
+								href={buildWhatsappHref(service.title)}
+								target="_blank"
+								rel="noreferrer noopener"
+								class="mt-6 inline-flex rounded-full border border-accent/40 bg-accent/10 px-4 py-2 text-xs font-semibold uppercase tracking-wide text-accent transition hover:bg-accent/20"
+							>
+								{messages.servicesPage.contactCtaLabel}
+							</a>
+						</li>
+					))
+				}
+			</ul>
+		</div>
+	</section>
+</BaseLayout>

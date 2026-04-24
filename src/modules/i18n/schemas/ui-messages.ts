@@ -16,6 +16,13 @@ export type StorefrontItemCopy = {
 	readonly ctaHref: string;
 };
 
+export type ServiceItemCopy = {
+	readonly id: string;
+	readonly title: string;
+	readonly summary: string;
+	readonly deliverables: readonly string[];
+};
+
 export type UiMessages = {
 	readonly locale: Locale;
 	readonly site: {
@@ -34,6 +41,7 @@ export type UiMessages = {
 		readonly leadership: string;
 		readonly work: string;
 		readonly allProjects: string;
+		readonly services: string;
 		readonly products: string;
 		readonly contact: string;
 		readonly book: string;
@@ -82,6 +90,14 @@ export type UiMessages = {
 		readonly backHome: string;
 		readonly linkRepository: string;
 		readonly linkLive: string;
+	};
+	readonly servicesPage: {
+		readonly title: string;
+		readonly intro: string;
+		readonly backHome: string;
+		readonly contactCtaLabel: string;
+		readonly whatsappMessagePrefix: string;
+		readonly items: readonly ServiceItemCopy[];
 	};
 	readonly store: {
 		readonly eyebrow: string;
