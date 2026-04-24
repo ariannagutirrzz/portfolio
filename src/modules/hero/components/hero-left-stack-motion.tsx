@@ -51,7 +51,7 @@ export function HeroLeftStackMotion({ hero }: Props) {
 						/>
 					</a>
 					<a
-						href="#work"
+						href={hero.secondaryCtaHref}
 						className="text-sm font-medium text-pearl/90 underline-offset-8 transition hover:text-accent hover:underline"
 					>
 						{hero.secondaryCta}
@@ -87,7 +87,7 @@ export function HeroLeftStackMotion({ hero }: Props) {
 					/>
 				</a>
 				<a
-					href="#work"
+					href={hero.secondaryCtaHref}
 					className="text-sm font-medium text-pearl/90 underline-offset-8 transition hover:text-accent hover:underline"
 				>
 					{hero.secondaryCta}

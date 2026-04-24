@@ -1,5 +1,6 @@
 ---
 import type { UiMessages } from '../../i18n/schemas/ui-messages';
+import { publicIdentity } from '../constants/public-identity';
 import { LanguageSwitcher } from './language-switcher';
 
 type Props = {
@@ -9,9 +10,11 @@ type Props = {
 
 const { messages, pathname } = Astro.props;
 const { nav, a11y, languageSwitcher } = messages;
+const localePrefix: string = `/${messages.locale}`;
 const navItems: readonly { href: string; label: string }[] = [
 	{ href: '#leadership', label: nav.leadership },
 	{ href: '#work', label: nav.work },
+	{ href: `${localePrefix}/projects/`, label: nav.allProjects },
 	{ href: '#store', label: nav.products },
 	{ href: '#contact', label: nav.contact },
 ] as const;
@@ -30,17 +33,17 @@ const navItems: readonly { href: string; label: string }[] = [
 			>
 				{nav.portfolioLabel}
 			</span>
-			Arianna
+			{publicIdentity.fullName}
 		</a>
 		<nav
 			aria-label={a11y.navPrimary}
-			class="flex max-w-[min(100%,420px)] flex-1 justify-end gap-2 overflow-x-auto pb-1 sm:max-w-[min(100%,480px)] sm:gap-4 md:max-w-none md:justify-center md:overflow-visible md:pb-0"
+			class="flex max-w-[min(100%,420px)] flex-1 justify-end gap-2 overflow-x-auto pb-1 sm:max-w-[min(100%,520px)] sm:gap-3 md:max-w-none md:justify-center md:overflow-visible md:pb-0"
 		>
 			{
 				navItems.map((item) => (
 					<a
 						href={item.href}
-						class="shrink-0 rounded-full border border-white/10 px-3 py-1.5 text-xs font-medium text-pearl/90 transition hover:border-accent/40 hover:text-pearl md:border-transparent md:px-0 md:py-0 md:text-sm md:text-mist md:hover:text-pearl"
+						class="shrink-0 rounded-full border border-white/10 px-2.5 py-1.5 text-[11px] font-medium text-pearl/90 transition hover:border-accent/40 hover:text-pearl sm:px-3 sm:text-xs md:border-transparent md:px-0 md:py-0 md:text-sm md:text-mist md:hover:text-pearl"
 					>
 						{item.label}
 					</a>

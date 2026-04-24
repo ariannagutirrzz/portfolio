@@ -3,17 +3,22 @@ import type { UiMessages } from '../schemas/ui-messages';
 export const es: UiMessages = {
 	locale: 'es',
 	site: {
-		title: 'Arianna — Liderazgo Front-End & Sistemas',
+		title: 'Arianna Vega — Full-Stack Engineer',
 		metaDescription:
-			'Ingeniera líder en Front-End y Sistemas, especializada en arquitectura escalable, ecosistemas Odoo y React, y entrega de alta confianza.',
-		titleTemplate: '%s · Arianna',
-		personJobTitle: 'Ingeniera líder en Front-End y Sistemas',
+			'Full-Stack Engineer en Simplest.guru y estudiante de Ingeniería Informática (URBE). 3+ años construyendo React, Node.js y Next.js para retail en EE. UU., automatización tributaria e integraciones.',
+		titleTemplate: '%s · Arianna Vega',
+		personJobTitle: 'Full-Stack Engineer',
 		personKnowsAbout: [
-			'Arquitectura de software',
 			'React',
-			'Odoo',
-			'Diseño de sistemas',
-			'Liderazgo técnico',
+			'TypeScript',
+			'Node.js',
+			'Next.js',
+			'APIs REST',
+			'WebSockets',
+			'PostgreSQL',
+			'Docker',
+			'CI/CD',
+			'React Native',
 		],
 	},
 	a11y: {
@@ -24,55 +29,57 @@ export const es: UiMessages = {
 	nav: {
 		leadership: 'Liderazgo',
 		work: 'Proyectos',
+		allProjects: 'Todos los proyectos',
 		products: 'Productos',
 		contact: 'Contacto',
 		book: 'Agendar',
 		portfolioLabel: 'Portafolio',
 	},
 	hero: {
-		roleBadge: 'Ingeniera líder en Front-End y Sistemas',
-		headlineLine1: 'Ingeniería de sistemas escalables',
-		headlineLine2: 'y liderazgo en innovación front-end',
+		roleBadge: 'Full-Stack Engineer · Simplest.guru',
+		headlineLine1: 'Sistemas web a escala retail',
+		headlineLine2: 'y full-stack con disciplina',
 		tagline:
-			'Disciplina de ingeniería informática con comunicación ejecutiva: front ends resilientes, límites de sistema claros y mentoría sin perder el oficio.',
+			'Desarrolladora full-stack proactiva liderando rediseños y migraciones para 85+ supermercados en EE. UU., con foco en datos en tiempo real (WebSockets), apps móviles con ESL y APIs en Node—mientras termino Ingeniería Informática en URBE.',
 		primaryCta: 'Iniciar conversación',
-		secondaryCta: 'Ver sistemas seleccionados',
+		secondaryCta: 'Ver archivo completo de proyectos',
+		secondaryCtaHref: '/es/projects/',
 		panelTitle: 'Principios de operación',
 		panelBullets: [
-			'Arquitectura primero, frameworks después.',
-			'Medir adopción, no refactors vanidosos.',
-			'Accesibilidad y rendimiento son criterio de lanzamiento.',
+			'Claridad operativa: Jira, Git y documentación que QA puede ejecutar.',
+			'Ciclo completo: UI en React, APIs en Node y ajustes en PostgreSQL.',
+			'Victorias medibles: latencia, disponibilidad y carga de soporte.',
 		],
 	},
 	lead: {
-		eyebrow: 'Capa de liderazgo',
-		title: 'Liderazgo anclado en diseño de sistemas',
-		body: 'Ya sea guiando un equipo de plataforma o alineando stakeholders de dirección, el mandato es el mismo: traducir la ambigüedad en contextos acotados, interfaces medibles y un ritmo de entrega humano—especialmente donde convergen Odoo, React y servicios distribuidos.',
+		eyebrow: 'Liderazgo en producción',
+		title: 'De dashboards retail a tributos municipales',
+		body: 'En Simplest.guru lidero modernización full-stack para una operación nacional de retail, asumiendo superficies en React, servicios Node.js, WebSockets y endurecimiento operativo. En Sitrive entregué una plataforma tributaria bilingüe con form builder dinámico y UI guiada por Storybook. Proyectos propios cubren inventario, facturación y herramientas clínicas con IA.',
 		pillars: [
 			{
-				title: 'Precisión arquitectónica',
-				body: 'Contratos, límites y observabilidad definidos antes del primer commit a producción.',
+				title: 'Confiabilidad a escala retail',
+				body: 'Módulos con muchos datos, paginación, filtros avanzados y manejo de errores para 85+ tiendas.',
 			},
 			{
-				title: 'Dominio Odoo × React',
-				body: 'Conectar la realidad ERP empresarial con stacks modernos en cliente—sin maquillar restricciones.',
+				title: 'Tiempo real y superficies móviles',
+				body: 'WebSockets para sincronización y React Native para inventario físico con etiquetas electrónicas (ESL).',
 			},
 			{
-				title: 'Liderazgo con evidencia',
-				body: 'Rúbricas de hiring, RFCs técnicos y rituales de entrega que mantienen velocidad sin quemar equipos.',
+				title: 'Documentación que QA usa',
+				body: 'Especificaciones tipo Swagger, evidencia visual y Git/Jira para releases predecibles.',
 			},
 		],
 		decisionTitle: 'Cómo se toman las decisiones',
 		decisionBody:
 			'RFCs con tradeoffs explícitos, ADRs que envejecen bien y revisiones de diseño donde UX, seguridad y operabilidad son una sola conversación. No es teatro de consenso: es un modelo compartido de riesgo.',
-		quote: '“Entrega la porción mínima que prueba la arquitectura—luego compón.”',
-		quoteCite: '— mantra de operación',
+		quote: '“De la necesidad al resultado: yo lidero el camino.”',
+		quoteCite: '— Arianna Vega',
 	},
 	projects: {
 		eyebrow: 'Trabajo seleccionado',
 		title: 'Sistemas construidos con intención',
 		intro:
-			'Cada compromiso combina un problema bien planteado con una arquitectura que sobrevive al próximo reorg, upgrade de framework o pico de tráfico.',
+			'Destacados de Simplest.guru, Sitrive y builds independientes. El archivo lista cada caso—incluyendo landings, ecommerce e integraciones.',
 		asideLead:
 			'El contenido usa la Content Layer de Astro: los esquemas viven junto al dominio y las entradas en',
 		asideCodePath: 'src/content/projects',
@@ -84,6 +91,15 @@ export const es: UiMessages = {
 			repoAria: 'Ver repositorio de',
 			liveAria: 'Abrir proyecto en vivo:',
 		},
+		viewAllCta: 'Abrir archivo completo de proyectos →',
+	},
+	projectsArchive: {
+		title: 'Archivo de proyectos',
+		intro:
+			'Casos de retail, automatización municipal, inventario, integraciones de cobro, herramientas clínicas y sitios comerciales. Agrega entradas Markdown en src/content/projects para extender la lista.',
+		backHome: '← Volver al inicio',
+		linkRepository: 'Repositorio',
+		linkLive: 'En vivo',
 	},
 	store: {
 		eyebrow: 'Productos digitales',
@@ -103,13 +119,13 @@ export const es: UiMessages = {
 				ctaHref: '#contact',
 			},
 			{
-				id: 'react-odoo-playbook',
-				name: 'Manual React × Odoo',
-				tagline: 'Patrones probados en campo para unir datos ERP con experiencias cliente modernas.',
+				id: 'fullstack-audit-pack',
+				name: 'Revisión de arquitectura full-stack',
+				tagline: 'Análisis profundo de flujos React/Node, despliegue y pruebas con checklist de remediación.',
 				priceLabel: '$189',
-				deliveryNote: 'PDF + fragmentos de referencia.',
-				highlights: ['Puente de autenticación', 'Estrategia de caché', 'Checklist de upgrade'],
-				ctaLabel: 'Comprar plantilla',
+				deliveryNote: 'Informe escrito + Q&A asíncrono.',
+				highlights: ['Revisión de APIs', 'Notas de rendimiento', 'Mapa de riesgos de release'],
+				ctaLabel: 'Reservar revisión',
 				ctaHref: '#contact',
 			},
 			{
@@ -150,10 +166,14 @@ export const es: UiMessages = {
 		success:
 			'Gmail debería abrirse en una pestaña nueva con tu borrador. Si el navegador bloqueó la ventana, inténtalo de nuevo o escribe directamente a __EMAIL__.',
 		errorRequired: 'Nombre, correo y mensaje son obligatorios.',
+		composeFallbackHint:
+			'Si no se abrió una pestaña nueva, el navegador pudo bloquearla. Abre el borrador aquí sin salir del portafolio:',
+		composeFallbackAction: 'Abrir redacción en Gmail',
 	},
 	footer: {
 		writing: 'Escritos',
 		crafted: 'Hecho con Astro y rigor',
+		linkedIn: 'LinkedIn',
 	},
 	blog: {
 		title: 'Escritos',

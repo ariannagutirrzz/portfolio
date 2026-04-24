@@ -33,6 +33,7 @@ export type UiMessages = {
 	readonly nav: {
 		readonly leadership: string;
 		readonly work: string;
+		readonly allProjects: string;
 		readonly products: string;
 		readonly contact: string;
 		readonly book: string;
@@ -45,6 +46,7 @@ export type UiMessages = {
 		readonly tagline: string;
 		readonly primaryCta: string;
 		readonly secondaryCta: string;
+		readonly secondaryCtaHref: string;
 		readonly panelTitle: string;
 		readonly panelBullets: readonly string[];
 	};
@@ -72,6 +74,14 @@ export type UiMessages = {
 			readonly repoAria: string;
 			readonly liveAria: string;
 		};
+		readonly viewAllCta: string;
+	};
+	readonly projectsArchive: {
+		readonly title: string;
+		readonly intro: string;
+		readonly backHome: string;
+		readonly linkRepository: string;
+		readonly linkLive: string;
 	};
 	readonly store: {
 		readonly eyebrow: string;
@@ -102,10 +112,13 @@ export type UiMessages = {
 		readonly footnote: string;
 		readonly success: string;
 		readonly errorRequired: string;
+		readonly composeFallbackHint: string;
+		readonly composeFallbackAction: string;
 	};
 	readonly footer: {
 		readonly writing: string;
 		readonly crafted: string;
+		readonly linkedIn: string;
 	};
 	readonly blog: {
 		readonly title: string;

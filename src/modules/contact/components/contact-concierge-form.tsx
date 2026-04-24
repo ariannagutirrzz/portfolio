@@ -23,6 +23,7 @@ export function ContactConciergeForm({ contactForm, primaryEmail }: Props) {
 	const [message, setMessage] = useState<string>('');
 	const [status, setStatus] = useState<FormStatus>(initialStatus);
 	const [error, setError] = useState<string>('');
+	const [composeTabBlocked, setComposeTabBlocked] = useState<boolean>(false);
 	const gmailComposeUrl: string = useMemo(() => {
 		const subject: string = topic.trim() || contactForm.defaultMailSubject;
 		const bodyLines: string[] = [
@@ -45,9 +46,13 @@ export function ContactConciergeForm({ contactForm, primaryEmail }: Props) {
 				setError(contactForm.errorRequired);
 				return;
 			}
-			const opened: Window | null = window.open(gmailComposeUrl, '_blank', 'noopener,noreferrer');
-			if (opened === null) {
-				window.location.assign(gmailComposeUrl);
+			setComposeTabBlocked(false);
+			const newTab: Window | null = window.open(gmailComposeUrl, '_blank');
+			if (newTab !== null) {
+				newTab.opener = null;
+				setComposeTabBlocked(false);
+			} else {
+				setComposeTabBlocked(true);
 			}
 			setStatus('success');
 		},
@@ -58,7 +63,9 @@ export function ContactConciergeForm({ contactForm, primaryEmail }: Props) {
 		return (
 			<form className={formClassName} onSubmit={onSubmit} noValidate>
 				<ContactConciergeFormFields
+					composeTabBlocked={composeTabBlocked}
 					contactForm={contactForm}
+					gmailComposeUrl={gmailComposeUrl}
 					name={name}
 					setName={setName}
 					email={email}
@@ -85,7 +92,9 @@ export function ContactConciergeForm({ contactForm, primaryEmail }: Props) {
 			transition={{ ...weightedChildTween, delay: 0.12 }}
 		>
 			<ContactConciergeFormFields
+				composeTabBlocked={composeTabBlocked}
 				contactForm={contactForm}
+				gmailComposeUrl={gmailComposeUrl}
 				name={name}
 				setName={setName}
 				email={email}
@@ -103,7 +112,9 @@ export function ContactConciergeForm({ contactForm, primaryEmail }: Props) {
 }
 
 type FieldsProps = {
+	readonly composeTabBlocked: boolean;
 	readonly contactForm: UiMessages['contactForm'];
+	readonly gmailComposeUrl: string;
 	readonly name: string;
 	readonly setName: (value: string) => void;
 	readonly email: string;
@@ -118,7 +129,9 @@ type FieldsProps = {
 };
 
 function ContactConciergeFormFields({
+	composeTabBlocked,
 	contactForm,
+	gmailComposeUrl,
 	name,
 	setName,
 	email,
@@ -209,13 +222,28 @@ function ContactConciergeFormFields({
 				</p>
 			) : null}
 			{status === 'success' ? (
-				<p className="text-sm text-accent" role="status">
-					{successParts[0]}
-					<a className="underline underline-offset-4" href={`mailto:${primaryEmail}`}>
-						{primaryEmail}
-					</a>
-					{successParts[1] ?? ''}
-				</p>
+				<div className="space-y-3" role="status">
+					<p className="text-sm text-accent">
+						{successParts[0]}
+						<a className="underline underline-offset-4" href={`mailto:${primaryEmail}`}>
+							{primaryEmail}
+						</a>
+						{successParts[1] ?? ''}
+					</p>
+					{composeTabBlocked ? (
+						<p className="text-sm leading-relaxed text-mist">
+							{contactForm.composeFallbackHint}{' '}
+							<a
+								className="font-semibold text-accent underline underline-offset-4 hover:text-pearl"
+								href={gmailComposeUrl}
+								target="_blank"
+								rel="noreferrer"
+							>
+								{contactForm.composeFallbackAction}
+							</a>
+						</p>
+					) : null}
+				</div>
 			) : null}
 			<button
 				type="submit"

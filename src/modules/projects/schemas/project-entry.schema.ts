@@ -13,6 +13,8 @@ export const projectEntrySchema = z.object({
 	repository: z.string().optional(),
 	bentoSpan: bentoSpanSchema.default('narrow'),
 	order: z.number().default(0),
+	/** When false, the card appears only on the full project archive page. */
+	featured: z.boolean().default(true),
 });
 
 export type ProjectEntry = z.infer<typeof projectEntrySchema>;

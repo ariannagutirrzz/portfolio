@@ -16,4 +16,10 @@ const payloads: ProjectCardPayload[] = projects.map((entry: CollectionEntry<'pro
 }));
 ---
 
-<ProjectsWorkSectionMotion projects={payloads} projectsCopy={messages.projects} client:visible />
+<ProjectsWorkSectionMotion
+	archiveHref={`/${messages.locale}/projects/`}
+	archiveLabel={messages.projects.viewAllCta}
+	projects={payloads}
+	projectsCopy={messages.projects}
+	client:visible
+/>

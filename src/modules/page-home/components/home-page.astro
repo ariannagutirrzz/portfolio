@@ -7,6 +7,7 @@ import LeadShowcaseSection from '../../lead-showcase/components/lead-showcase-se
 import ProjectsBentoSection from '../../projects/components/projects-bento-section.astro';
 import { getMessages } from '../../i18n/get-messages';
 import type { Locale } from '../../i18n/schemas/ui-messages';
+import { filterFeaturedProjects } from '../../projects/utils/filter-featured-projects';
 import { sortProjectEntries } from '../../projects/utils/sort-project-entries';
 import { getCollection } from 'astro:content';
 
@@ -16,7 +17,7 @@ type Props = {
 
 const { locale } = Astro.props;
 const messages = getMessages(locale);
-const projectEntries = sortProjectEntries(await getCollection('projects'));
+const projectEntries = sortProjectEntries(filterFeaturedProjects(await getCollection('projects')));
 ---
 
 <BaseLayout locale={locale} messages={messages} title={messages.site.title}>

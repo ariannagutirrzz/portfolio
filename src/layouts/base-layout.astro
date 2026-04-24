@@ -21,11 +21,12 @@ const personUrl: string = siteOrigin;
 const jsonLd: string = JSON.stringify({
 	'@context': 'https://schema.org',
 	'@type': 'Person',
-	name: 'Arianna',
+	name: publicIdentity.fullName,
 	jobTitle: messages.site.personJobTitle,
 	url: personUrl,
 	description: messages.site.metaDescription,
 	email: publicIdentity.primaryEmail,
+	sameAs: [publicIdentity.linkedInUrl],
 	inLanguage: locale,
 	knowsAbout: [...messages.site.personKnowsAbout],
 });

@@ -8,6 +8,8 @@ import { ProjectBentoCardMotion } from './project-bento-card-motion';
 type Props = {
 	readonly projects: ProjectCardPayload[];
 	readonly projectsCopy: UiMessages['projects'];
+	readonly archiveHref: string;
+	readonly archiveLabel: string;
 };
 
 const intro = {
@@ -37,7 +39,7 @@ function AsideParagraph({ copy }: { readonly copy: UiMessages['projects'] }) {
 	);
 }
 
-export function ProjectsWorkSectionMotion({ projects, projectsCopy }: Props) {
+export function ProjectsWorkSectionMotion({ projects, projectsCopy, archiveHref, archiveLabel }: Props) {
 	const reduceMotion: boolean | null = useReducedMotion();
 	if (reduceMotion) {
 		return (
@@ -57,6 +59,14 @@ export function ProjectsWorkSectionMotion({ projects, projectsCopy }: Props) {
 						{projects.map((project: ProjectCardPayload, index: number) => (
 							<ProjectBentoCardMotion key={project.id} cardLabels={projectsCopy.card} project={project} index={index} />
 						))}
+					</div>
+					<div className="mt-12 flex justify-center border-t border-white/10 pt-10">
+						<a
+							href={archiveHref}
+							className="text-sm font-semibold text-accent underline-offset-8 transition hover:text-pearl hover:underline"
+						>
+							{archiveLabel}
+						</a>
 					</div>
 				</div>
 			</section>
@@ -88,6 +98,20 @@ export function ProjectsWorkSectionMotion({ projects, projectsCopy }: Props) {
 						<ProjectBentoCardMotion key={project.id} cardLabels={projectsCopy.card} project={project} index={index} />
 					))}
 				</div>
+				<motion.div
+					className="mt-12 flex justify-center border-t border-white/10 pt-10"
+					initial={{ opacity: 0, y: 10 }}
+					whileInView={{ opacity: 1, y: 0 }}
+					viewport={{ once: true }}
+					transition={{ ...weightedChildTween, delay: 0.08 }}
+				>
+					<a
+						href={archiveHref}
+						className="text-sm font-semibold text-accent underline-offset-8 transition hover:text-pearl hover:underline"
+					>
+						{archiveLabel}
+					</a>
+				</motion.div>
 			</div>
 		</section>
 	);
