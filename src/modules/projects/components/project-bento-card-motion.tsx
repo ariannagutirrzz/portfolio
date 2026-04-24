@@ -14,7 +14,7 @@ type Props = {
 const spanClass: Record<ProjectCardPayload['bentoSpan'], string> = {
 	narrow: '',
 	wide: 'md:col-span-2',
-	hero: 'md:col-span-2 md:row-span-2 lg:min-h-[320px]',
+	hero: 'md:col-span-2',
 };
 
 export function ProjectBentoCardMotion({ project, index, cardLabels }: Props) {
