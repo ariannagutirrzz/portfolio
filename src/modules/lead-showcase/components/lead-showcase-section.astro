@@ -1,0 +1,26 @@
+---
+import type { UiMessages } from '../../i18n/schemas/ui-messages';
+import { LeadDecisionRowMotion } from './lead-decision-row-motion';
+import { LeadIntroMotion } from './lead-intro-motion';
+import { LeadPillarsMotion } from './lead-pillars-motion';
+
+type Props = {
+	readonly messages: UiMessages;
+};
+
+const { messages } = Astro.props;
+---
+
+<section
+	id="leadership"
+	class="scroll-mt-24 border-b border-white/10 px-6 py-28 sm:px-10 lg:px-16"
+	aria-labelledby="lead-heading"
+>
+	<div class="mx-auto max-w-6xl">
+		<LeadIntroMotion client:visible lead={messages.lead} />
+		<div class="mt-16">
+			<LeadPillarsMotion client:visible pillars={messages.lead.pillars} />
+		</div>
+		<LeadDecisionRowMotion client:visible lead={messages.lead} />
+	</div>
+</section>

@@ -1,0 +1,12 @@
+---
+import type { UiMessages } from '../../i18n/schemas/ui-messages';
+import { DigitalProductsSectionMotion } from './digital-products-section-motion';
+
+type Props = {
+	readonly messages: UiMessages;
+};
+
+const { messages } = Astro.props;
+---
+
+<DigitalProductsSectionMotion messages={messages} client:visible />

@@ -1,0 +1,70 @@
+---
+import '../styles/global.css';
+import SiteFooter from '../modules/site-shell/components/site-footer.astro';
+import SiteHeader from '../modules/site-shell/components/site-header.astro';
+import { publicIdentity } from '../modules/site-shell/constants/public-identity';
+import type { Locale } from '../modules/i18n/schemas/ui-messages';
+import type { UiMessages } from '../modules/i18n/schemas/ui-messages';
+
+type Props = {
+	readonly locale: Locale;
+	readonly messages: UiMessages;
+	readonly title: string;
+	readonly description?: string;
+};
+
+const { locale, messages, title, description = messages.site.metaDescription } = Astro.props;
+const pageTitle: string = title === messages.site.title ? title : messages.site.titleTemplate.replace('%s', title);
+const canonicalUrl: string = new URL(Astro.url.pathname, Astro.site ?? Astro.url.origin).href;
+const siteOrigin: string = (Astro.site ?? Astro.url).origin;
+const personUrl: string = siteOrigin;
+const jsonLd: string = JSON.stringify({
+	'@context': 'https://schema.org',
+	'@type': 'Person',
+	name: 'Arianna',
+	jobTitle: messages.site.personJobTitle,
+	url: personUrl,
+	description: messages.site.metaDescription,
+	email: publicIdentity.primaryEmail,
+	inLanguage: locale,
+	knowsAbout: [...messages.site.personKnowsAbout],
+});
+const alternateEn: string = new URL('/en/', siteOrigin).href;
+const alternateEs: string = new URL('/es/', siteOrigin).href;
+---
+
+<!doctype html>
+<html lang={locale}>
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="generator" content={Astro.generator} />
+		<meta name="description" content={description} />
+		<meta name="theme-color" content="#070708" />
+		<meta property="og:title" content={pageTitle} />
+		<meta property="og:description" content={description} />
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content={canonicalUrl} />
+		<meta property="og:locale" content={locale === 'es' ? 'es_VE' : 'en_US'} />
+		<link rel="canonical" href={canonicalUrl} />
+		<link rel="alternate" hreflang="en" href={alternateEn} />
+		<link rel="alternate" hreflang="es" href={alternateEs} />
+		<link rel="alternate" hreflang="x-default" href={alternateEs} />
+		<title>{pageTitle}</title>
+		<script is:inline type="application/ld+json" set:html={jsonLd} />
+	</head>
+	<body class="min-h-screen bg-void">
+		<a
+			href="#main"
+			class="fixed left-4 top-4 z-[100] -translate-y-24 rounded-full bg-accent px-4 py-2 text-sm font-semibold text-void opacity-0 transition focus:translate-y-0 focus:opacity-100"
+		>
+			{messages.a11y.skipToContent}
+		</a>
+		<SiteHeader messages={messages} pathname={Astro.url.pathname} />
+		<main id="main">
+			<slot />
+		</main>
+		<SiteFooter messages={messages} />
+	</body>
+</html>

@@ -1,0 +1,28 @@
+---
+import BaseLayout from '../../../layouts/base-layout.astro';
+import ContactSection from '../../contact/components/contact-section.astro';
+import DigitalProductsSection from '../../digital-products/components/digital-products-section.astro';
+import HeroSection from '../../hero/components/hero-section.astro';
+import LeadShowcaseSection from '../../lead-showcase/components/lead-showcase-section.astro';
+import ProjectsBentoSection from '../../projects/components/projects-bento-section.astro';
+import { getMessages } from '../../i18n/get-messages';
+import type { Locale } from '../../i18n/schemas/ui-messages';
+import { sortProjectEntries } from '../../projects/utils/sort-project-entries';
+import { getCollection } from 'astro:content';
+
+type Props = {
+	readonly locale: Locale;
+};
+
+const { locale } = Astro.props;
+const messages = getMessages(locale);
+const projectEntries = sortProjectEntries(await getCollection('projects'));
+---
+
+<BaseLayout locale={locale} messages={messages} title={messages.site.title}>
+	<HeroSection messages={messages} />
+	<LeadShowcaseSection messages={messages} />
+	<ProjectsBentoSection messages={messages} projects={projectEntries} />
+	<DigitalProductsSection messages={messages} />
+	<ContactSection messages={messages} />
+</BaseLayout>

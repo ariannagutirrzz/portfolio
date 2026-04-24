@@ -1,0 +1,47 @@
+---
+
+---
+
+<!doctype html>
+<html lang="es">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>Portfolio — Arianna</title>
+		<meta
+			name="description"
+			content="Redirigiendo al idioma preferido según tu navegador o la elección guardada en este dispositivo."
+		/>
+		<script is:inline>
+			(function () {
+				var key = 'portfolio-locale';
+				var stored = null;
+				try {
+					stored = window.localStorage.getItem(key);
+				} catch {
+					stored = null;
+				}
+				if (stored === 'en' || stored === 'es') {
+					window.location.replace('/' + stored + '/');
+					return;
+				}
+				var primary = (navigator.languages && navigator.languages[0]) || navigator.language || '';
+				if (/^es/i.test(primary)) {
+					window.location.replace('/es/');
+					return;
+				}
+				window.location.replace('/en/');
+			})();
+		</script>
+		<noscript>
+			<meta http-equiv="refresh" content="0;url=/es/" />
+		</noscript>
+	</head>
+	<body class="min-h-screen bg-void px-6 py-16 font-sans text-pearl">
+		<p class="text-sm text-mist">
+			<a class="text-accent underline underline-offset-4" href="/es/">Continuar en español</a>
+			{' · '}
+			<a class="text-accent underline underline-offset-4" href="/en/">Continue in English</a>
+		</p>
+	</body>
+</html>

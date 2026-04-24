@@ -1,0 +1,19 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import type { ProjectCardPayload } from '../schemas/project-card-payload';
+import type { UiMessages } from '../../i18n/schemas/ui-messages';
+import { ProjectsWorkSectionMotion } from './projects-work-section-motion';
+
+type Props = {
+	readonly messages: UiMessages;
+	readonly projects: CollectionEntry<'projects'>[];
+};
+
+const { messages, projects } = Astro.props;
+const payloads: ProjectCardPayload[] = projects.map((entry: CollectionEntry<'projects'>) => ({
+	id: entry.id,
+	...entry.data,
+}));
+---
+
+<ProjectsWorkSectionMotion projects={payloads} projectsCopy={messages.projects} client:visible />
