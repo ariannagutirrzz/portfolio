@@ -97,7 +97,7 @@ export function HeroInteractiveBackdrop() {
 			<div
 				className="absolute inset-0"
 				style={{
-					background: `radial-gradient(520px at ${pointer.xPercent}% ${pointer.yPercent}%, rgba(201,169,98,0.12), transparent 62%)`,
+					background: `radial-gradient(520px at ${pointer.xPercent}% ${pointer.yPercent}%, rgba(77,140,238,0.14), transparent 62%)`,
 				}}
 			/>
 			<div className="grain-overlay absolute inset-0 opacity-[0.18] mix-blend-overlay" />

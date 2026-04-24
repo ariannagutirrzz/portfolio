@@ -46,6 +46,8 @@ export type UiMessages = {
 		readonly contact: string;
 		readonly book: string;
 		readonly portfolioLabel: string;
+		/** Primary CV download label (header / optional hero). */
+		readonly downloadCv: string;
 	};
 	readonly hero: {
 		readonly roleBadge: string;
@@ -83,6 +85,8 @@ export type UiMessages = {
 			readonly liveAria: string;
 		};
 		readonly viewAllCta: string;
+		/** Accessible name for the horizontal featured-project strip. */
+		readonly projectRailAria: string;
 	};
 	readonly projectsArchive: {
 		readonly title: string;

@@ -59,7 +59,10 @@ export function DigitalProductsSectionMotion({ messages }: Props) {
 					</div>
 					<ul className="mt-16 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
 						{store.items.map((item: StorefrontItemCopy) => (
-							<li key={item.id} className="glass-panel flex flex-col rounded-2xl p-8 transition duration-500 hover:border-accent/30">
+							<li
+								key={item.id}
+								className="glass-panel flex flex-col rounded-2xl p-8 transition duration-300 hover:-translate-y-1 hover:border-accent/45 hover:shadow-[0_12px_40px_rgba(77,140,238,0.18)]"
+							>
 								<DigitalProductCard item={item} />
 							</li>
 						))}
@@ -92,7 +95,7 @@ export function DigitalProductsSectionMotion({ messages }: Props) {
 					{store.items.map((item: StorefrontItemCopy) => (
 						<motion.li
 							key={item.id}
-							className="glass-panel flex flex-col rounded-2xl p-8 transition duration-500 hover:border-accent/30"
+							className="glass-panel flex flex-col rounded-2xl p-8 transition duration-300 hover:-translate-y-1 hover:border-accent/45 hover:shadow-[0_12px_40px_rgba(77,140,238,0.18)]"
 							variants={card}
 						>
 							<DigitalProductCard item={item} />

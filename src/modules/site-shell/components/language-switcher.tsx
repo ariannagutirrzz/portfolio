@@ -1,3 +1,5 @@
+import { navigate } from 'astro:transitions/client';
+
 import type { Locale } from '../../i18n/schemas/ui-messages';
 import { preferredLocaleStorageKey } from '../../i18n/locale-storage';
 
@@ -33,7 +35,7 @@ export function LanguageSwitcher({ currentLocale, pathname, copy }: Props) {
 			/* ignore */
 		}
 		const nextPath: string = buildPathForLocale(pathname, target);
-		window.location.assign(nextPath);
+		void navigate(nextPath);
 	};
 	return (
 		<div

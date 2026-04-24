@@ -35,6 +35,7 @@ export const es: UiMessages = {
 		contact: 'Contacto',
 		book: 'Hablemos',
 		portfolioLabel: 'Portafolio',
+		downloadCv: 'Descargar CV',
 	},
 	hero: {
 		roleBadge: 'Full-Stack Engineer · Simplest.guru',
@@ -93,6 +94,7 @@ export const es: UiMessages = {
 			liveAria: 'Abrir proyecto en vivo:',
 		},
 		viewAllCta: 'Abrir archivo completo de proyectos →',
+		projectRailAria: 'Proyectos destacados, desplázate horizontalmente',
 	},
 	projectsArchive: {
 		title: 'Archivo de proyectos',

@@ -243,7 +243,7 @@ function ContactConciergeFormFields({
 			<button
 				type="submit"
 				disabled={isSubmitting}
-				className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-accent py-3.5 text-sm font-semibold text-void transition hover:bg-pearl md:w-auto md:px-10"
+				className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-accent py-3.5 text-sm font-semibold text-white shadow-[0_10px_28px_rgba(77,140,238,0.35)] transition duration-200 hover:-translate-y-0.5 hover:brightness-110 md:w-auto md:px-10"
 			>
 				{contactForm.submit}
 				<Send className="size-4" aria-hidden="true" />

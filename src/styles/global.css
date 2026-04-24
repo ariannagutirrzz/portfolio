@@ -1,22 +1,25 @@
 @import "tailwindcss";
-@import "@fontsource/instrument-serif/latin-400.css";
+@import "@fontsource/plus-jakarta-sans/latin-500.css";
+@import "@fontsource/plus-jakarta-sans/latin-600.css";
+@import "@fontsource/plus-jakarta-sans/latin-700.css";
 @import "@fontsource/dm-sans/latin-400.css";
 @import "@fontsource/dm-sans/latin-500.css";
 @import "@fontsource/dm-sans/latin-600.css";
 
 @theme {
-	--font-serif: "Instrument Serif", ui-serif, Georgia, "Times New Roman", serif;
+	/* Headings: Plus Jakarta Sans (relaxed, friendly; replaces former serif slot). */
+	--font-serif: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
 	--font-sans: "DM Sans", ui-sans-serif, system-ui, sans-serif;
-	--color-void: #070708;
-	--color-ink: #0e0f12;
-	--color-slate: #16181d;
-	--color-graphite: #1f232b;
-	--color-mist: #9a9aa8;
-	--color-pearl: #f0ede6;
-	--color-ivory: #f6f4ef;
-	--color-accent: #d4b76a;
-	--color-accent-soft: rgba(212, 183, 106, 0.16);
-	--shadow-glass: 0 18px 48px rgba(0, 0, 0, 0.38);
+	--color-void: #080c12;
+	--color-ink: #0e141f;
+	--color-slate: #121a26;
+	--color-graphite: #1a2433;
+	--color-mist: #94a3b8;
+	--color-pearl: #e8edf4;
+	--color-ivory: #f0f4fa;
+	--color-accent: #4d8cee;
+	--color-accent-soft: rgba(77, 140, 238, 0.2);
+	--shadow-glass: 0 18px 48px rgba(15, 40, 90, 0.35);
 }
 
 @layer base {
@@ -40,7 +43,7 @@
 		color: var(--color-pearl);
 	}
 	[data-theme="light"] ::selection {
-		background: rgba(201, 169, 98, 0.25);
+		background: rgba(77, 140, 238, 0.22);
 		color: var(--color-ink);
 	}
 	a:focus-visible,

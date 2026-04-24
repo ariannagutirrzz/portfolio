@@ -9,6 +9,8 @@ type Props = {
 	readonly project: ProjectCardPayload;
 	readonly index: number;
 	readonly cardLabels: UiMessages['projects']['card'];
+	/** `rail`: fixed-width horizontal strip; `bento`: grid spans from content. */
+	readonly layout?: 'bento' | 'rail';
 };
 
 const spanClass: Record<ProjectCardPayload['bentoSpan'], string> = {
@@ -17,16 +19,17 @@ const spanClass: Record<ProjectCardPayload['bentoSpan'], string> = {
 	hero: 'md:col-span-2',
 };
 
-export function ProjectBentoCardMotion({ project, index, cardLabels }: Props) {
+export function ProjectBentoCardMotion({ project, index, cardLabels, layout = 'bento' }: Props) {
 	const reduceMotion: boolean | null = useReducedMotion();
+	const isRail: boolean = layout === 'rail';
 	const baseClass: string = [
-		'group relative flex flex-col overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-white/[0.07] to-transparent p-6 transition duration-500 hover:border-accent/35 hover:shadow-[0_0_0_1px_rgba(201,169,98,0.15)]',
-		spanClass[project.bentoSpan],
+		'group relative flex flex-col overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-white/[0.07] to-transparent p-6 transition duration-300 hover:-translate-y-1 hover:border-accent/45 hover:shadow-[0_12px_40px_rgba(77,140,238,0.2)]',
+		isRail ? 'h-full min-h-[22rem]' : spanClass[project.bentoSpan],
 	].join(' ');
 	if (reduceMotion) {
 		return (
 			<article className={baseClass}>
-				<ProjectCardInner cardLabels={cardLabels} project={project} />
+				<ProjectCardInner cardLabels={cardLabels} isRail={isRail} project={project} />
 			</article>
 		);
 	}
@@ -38,7 +41,7 @@ export function ProjectBentoCardMotion({ project, index, cardLabels }: Props) {
 			viewport={{ once: true, margin: '-5% 0px' }}
 			transition={{ ...weightedChildTween, delay: index * 0.06 }}
 		>
-			<ProjectCardInner cardLabels={cardLabels} project={project} />
+			<ProjectCardInner cardLabels={cardLabels} isRail={isRail} project={project} />
 		</motion.article>
 	);
 }
@@ -46,11 +49,13 @@ export function ProjectBentoCardMotion({ project, index, cardLabels }: Props) {
 type InnerProps = {
 	readonly project: ProjectCardPayload;
 	readonly cardLabels: UiMessages['projects']['card'];
+	readonly isRail: boolean;
 };
 
-function ProjectCardInner({ project, cardLabels }: InnerProps) {
+function ProjectCardInner({ project, cardLabels, isRail }: InnerProps) {
+	const stackClass: string = isRail ? 'flex min-h-0 flex-1 flex-col' : '';
 	return (
-		<>
+		<div className={stackClass}>
 			<div className="flex items-start justify-between gap-4">
 				<div>
 					<p className="text-xs font-semibold uppercase tracking-[0.2em] text-mist">{project.year}</p>
@@ -92,7 +97,10 @@ function ProjectCardInner({ project, cardLabels }: InnerProps) {
 					<p className="mt-1 text-pearl/90">{project.architectureUsed}</p>
 				</div>
 			</div>
-			<ul className="mt-6 flex flex-wrap gap-2" aria-label={cardLabels.techStackAria}>
+			<ul
+				className={isRail ? 'mt-auto flex flex-wrap gap-2 pt-1' : 'mt-6 flex flex-wrap gap-2'}
+				aria-label={cardLabels.techStackAria}
+			>
 				{project.techStack.map((tech: string, techIndex: number) => (
 					<li
 						key={`${project.id}-tech-${techIndex}`}
@@ -102,6 +110,6 @@ function ProjectCardInner({ project, cardLabels }: InnerProps) {
 					</li>
 				))}
 			</ul>
-		</>
+		</div>
 	);
 }

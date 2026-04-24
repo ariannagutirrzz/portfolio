@@ -1,4 +1,5 @@
 ---
+import { Download } from '@lucide/astro';
 import type { UiMessages } from '../../i18n/schemas/ui-messages';
 import { publicIdentity } from '../constants/public-identity';
 import { LanguageSwitcher } from './language-switcher';
@@ -23,10 +24,12 @@ function buildSectionHref(sectionId: string): string {
 const navItems: readonly { href: string; label: string }[] = [
 	{ href: buildSectionHref('leadership'), label: nav.leadership },
 	{ href: buildSectionHref('work'), label: nav.work },
-	{ href: `${localePrefix}/projects/`, label: nav.allProjects },
-	{ href: `${localePrefix}/services/`, label: nav.services },
+	{ href: buildSectionHref('store'), label: nav.products },
 	{ href: buildSectionHref('contact'), label: nav.contact },
 ] as const;
+const rawCvUrl: string | undefined = import.meta.env.PUBLIC_CV_URL;
+const cvHref: string = typeof rawCvUrl === 'string' && rawCvUrl.length > 0 ? rawCvUrl : '/cv.pdf';
+const isExternalCv: boolean = cvHref.startsWith('http://') || cvHref.startsWith('https://');
 ---
 
 <header
@@ -35,10 +38,10 @@ const navItems: readonly { href: string; label: string }[] = [
 	<div class="mx-auto flex max-w-5xl items-center justify-between gap-3 px-6 py-4 sm:px-10 lg:px-16">
 		<a
 			href={isHomePath ? '#top' : localeHomeHref}
-			class="group shrink-0 font-serif text-lg tracking-tight text-pearl transition hover:text-accent"
+			class="group shrink-0 font-serif text-lg font-semibold tracking-tight text-pearl transition duration-200 hover:text-accent"
 		>
 			<span
-				class="block text-xs font-sans font-medium uppercase tracking-[0.35em] text-mist group-hover:text-accent/80"
+				class="block text-xs font-sans font-medium uppercase tracking-[0.28em] text-mist transition duration-200 group-hover:text-accent/90"
 			>
 				{nav.portfolioLabel}
 			</span>
@@ -52,7 +55,7 @@ const navItems: readonly { href: string; label: string }[] = [
 				navItems.map((item) => (
 					<a
 						href={item.href}
-						class="shrink-0 rounded-full border border-white/10 px-2.5 py-1.5 text-[11px] font-medium text-pearl/90 transition hover:border-accent/40 hover:text-pearl sm:px-3 sm:text-xs md:border-transparent md:px-0 md:py-0 md:text-sm md:text-mist md:hover:text-pearl"
+						class="shrink-0 rounded-full border border-white/10 px-2.5 py-1.5 text-[11px] font-medium text-pearl/90 transition duration-200 hover:-translate-y-0.5 hover:border-accent/55 hover:bg-accent/10 hover:text-pearl hover:shadow-[0_10px_28px_rgba(77,140,238,0.18)] sm:px-3 sm:text-xs md:border-transparent md:px-2.5 md:py-1.5 md:text-sm md:text-mist md:hover:text-pearl lg:px-3"
 					>
 						{item.label}
 					</a>
@@ -62,8 +65,19 @@ const navItems: readonly { href: string; label: string }[] = [
 		<div class="flex shrink-0 items-center gap-2">
 			<LanguageSwitcher client:load currentLocale={messages.locale} pathname={pathname} copy={languageSwitcher} />
 			<a
+				href={cvHref}
+				class="inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-white/[0.04] px-2.5 py-2 text-xs font-semibold text-pearl transition duration-200 hover:-translate-y-0.5 hover:border-accent/50 hover:bg-accent/15 hover:text-pearl hover:shadow-[0_10px_28px_rgba(77,140,238,0.2)] sm:gap-2 sm:px-3"
+				aria-label={nav.downloadCv}
+				download={isExternalCv ? undefined : true}
+				rel={isExternalCv ? 'noreferrer noopener' : undefined}
+				target={isExternalCv ? '_blank' : undefined}
+			>
+				<Download class="size-4 shrink-0 text-accent" aria-hidden="true" />
+				<span class="hidden sm:inline">{nav.downloadCv}</span>
+			</a>
+			<a
 				href={buildSectionHref('contact')}
-				class="hidden rounded-full border border-accent/40 bg-accent/10 px-4 py-2 text-xs font-semibold uppercase tracking-wide text-accent transition hover:bg-accent/20 sm:inline-flex"
+				class="hidden rounded-full border border-accent/45 bg-accent px-4 py-2 text-xs font-semibold uppercase tracking-wide text-white shadow-[0_8px_24px_rgba(77,140,238,0.35)] transition duration-200 hover:-translate-y-0.5 hover:brightness-110 sm:inline-flex"
 			>
 				{nav.book}
 			</a>

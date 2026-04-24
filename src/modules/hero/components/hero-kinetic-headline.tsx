@@ -28,7 +28,7 @@ export function HeroKineticHeadline({ hero }: Props) {
 	const reduceMotion: boolean | null = useReducedMotion();
 	if (reduceMotion) {
 		return (
-			<h1 className="font-serif text-balance text-4xl leading-[1.12] tracking-tight text-pearl sm:text-5xl lg:text-5xl">
+			<h1 className="font-serif text-balance text-4xl leading-[1.18] tracking-normal text-pearl sm:text-5xl lg:text-5xl">
 				<span className="block">{hero.headlineLine1}</span>
 				<span className="mt-2 block text-mist">{hero.headlineLine2}</span>
 			</h1>
@@ -36,7 +36,7 @@ export function HeroKineticHeadline({ hero }: Props) {
 	}
 	return (
 		<motion.h1
-			className="font-serif text-balance text-4xl leading-[1.12] tracking-tight text-pearl sm:text-5xl lg:text-5xl"
+			className="font-serif text-balance text-4xl leading-[1.18] tracking-normal text-pearl sm:text-5xl lg:text-5xl"
 			variants={container}
 			initial="hidden"
 			animate="visible"
