@@ -231,14 +231,10 @@ export const en: UiMessages = {
 		topicPlaceholder: 'Fractional lead, architecture review, workshop…',
 		messagePlaceholder:
 			'Context, timelines, constraints—everything you would tell a partner on day zero.',
-		submit: 'Open in Gmail',
-		footnote:
-			'This form never stores data on a server—it opens Gmail in the browser with a drafted message. You must be signed into Google for compose to work. Swap in Formspree, Resend, or your CRM when you wire production automation.',
-		success:
-			'Gmail should open in a new tab with your draft. If it was blocked, try again or write directly to __EMAIL__.',
+		submit: 'Send inquiry',
+		success: 'Thanks. Your inquiry was sent successfully. I will get back to you soon.',
 		errorRequired: 'Name, email, and message are required.',
-		composeFallbackHint: 'If no new tab appeared, your browser may have blocked it. You can still open the draft here—your portfolio stays on this page:',
-		composeFallbackAction: 'Open Gmail compose',
+		errorServiceUnavailable: 'The automation endpoint is not configured yet. Add your environment keys and try again.',
 	},
 	footer: {
 		writing: 'Writing',

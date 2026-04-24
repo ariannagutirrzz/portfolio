@@ -92,7 +92,7 @@ function ProjectCardInner({ project, cardLabels }: InnerProps) {
 					<p className="mt-1 text-pearl/90">{project.architectureUsed}</p>
 				</div>
 			</div>
-			<ul className="mt-auto flex flex-wrap gap-2 pt-8" aria-label={cardLabels.techStackAria}>
+			<ul className="mt-6 flex flex-wrap gap-2" aria-label={cardLabels.techStackAria}>
 				{project.techStack.map((tech: string, techIndex: number) => (
 					<li
 						key={`${project.id}-tech-${techIndex}`}

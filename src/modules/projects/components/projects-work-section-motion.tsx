@@ -44,7 +44,7 @@ export function ProjectsWorkSectionMotion({ projects, projectsCopy, archiveHref,
 							<p className="mt-5 text-lg leading-relaxed text-mist">{projectsCopy.intro}</p>
 						</div>
 					</div>
-					<div className="mt-16 grid auto-rows-fr grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4 lg:grid-flow-dense">
+					<div className="mt-16 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4 lg:grid-flow-dense">
 						{projects.map((project: ProjectCardPayload, index: number) => (
 							<ProjectBentoCardMotion key={project.id} cardLabels={projectsCopy.card} project={project} index={index} />
 						))}
@@ -73,7 +73,7 @@ export function ProjectsWorkSectionMotion({ projects, projectsCopy, archiveHref,
 						<p className="mt-5 text-lg leading-relaxed text-mist">{projectsCopy.intro}</p>
 					</motion.div>
 				</motion.div>
-				<div className="mt-16 grid auto-rows-fr grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4 lg:grid-flow-dense">
+				<div className="mt-16 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4 lg:grid-flow-dense">
 					{projects.map((project: ProjectCardPayload, index: number) => (
 						<ProjectBentoCardMotion key={project.id} cardLabels={projectsCopy.card} project={project} index={index} />
 					))}

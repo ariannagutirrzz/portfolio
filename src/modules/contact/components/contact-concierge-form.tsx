@@ -4,18 +4,29 @@ import { useCallback, useMemo, useState } from 'react';
 
 import type { UiMessages } from '../../i18n/schemas/ui-messages';
 import { weightedChildTween } from '../../motion/constants/weighted-motion';
-import { buildGmailComposeUrl } from '../utils/build-gmail-compose-url';
 
-type FormStatus = 'idle' | 'success';
+type FormStatus = 'idle' | 'submitting' | 'success';
 
 const initialStatus: FormStatus = 'idle';
 
 type Props = {
 	readonly contactForm: UiMessages['contactForm'];
-	readonly primaryEmail: string;
+	readonly locale: UiMessages['locale'];
 };
 
-export function ContactConciergeForm({ contactForm, primaryEmail }: Props) {
+const automationWebhookUrl: string = import.meta.env.PUBLIC_LEAD_AUTOMATION_WEBHOOK_URL ?? '';
+
+type ContactLeadPayload = {
+	readonly name: string;
+	readonly email: string;
+	readonly topic: string;
+	readonly message: string;
+	readonly subject: string;
+	readonly source: 'portfolio-contact-form';
+	readonly locale: string;
+};
+
+export function ContactConciergeForm({ contactForm, locale }: Props) {
 	const reduceMotion: boolean | null = useReducedMotion();
 	const [name, setName] = useState<string>('');
 	const [email, setEmail] = useState<string>('');
@@ -23,49 +34,58 @@ export function ContactConciergeForm({ contactForm, primaryEmail }: Props) {
 	const [message, setMessage] = useState<string>('');
 	const [status, setStatus] = useState<FormStatus>(initialStatus);
 	const [error, setError] = useState<string>('');
-	const [composeTabBlocked, setComposeTabBlocked] = useState<boolean>(false);
-	const gmailComposeUrl: string = useMemo(() => {
+	const payload: ContactLeadPayload = useMemo(() => {
 		const subject: string = topic.trim() || contactForm.defaultMailSubject;
-		const bodyLines: string[] = [
-			`Name: ${name.trim()}`,
-			`Email: ${email.trim()}`,
-			'',
-			message.trim(),
-		];
-		return buildGmailComposeUrl({
-			to: primaryEmail,
+		return {
+			name: name.trim(),
+			email: email.trim(),
+			topic: topic.trim(),
+			message: message.trim(),
 			subject,
-			body: bodyLines.join('\n'),
-		});
-	}, [name, email, topic, message, primaryEmail, contactForm.defaultMailSubject]);
+			source: 'portfolio-contact-form',
+			locale,
+		};
+	}, [name, email, topic, message, contactForm.defaultMailSubject, locale]);
 	const onSubmit = useCallback(
-		(event: { preventDefault: () => void }) => {
+		async (event: { preventDefault: () => void }) => {
 			event.preventDefault();
 			setError('');
-			if (!name.trim() || !email.trim() || !message.trim()) {
+			if (!payload.name || !payload.email || !payload.message) {
 				setError(contactForm.errorRequired);
 				return;
 			}
-			setComposeTabBlocked(false);
-			const newTab: Window | null = window.open(gmailComposeUrl, '_blank');
-			if (newTab !== null) {
-				newTab.opener = null;
-				setComposeTabBlocked(false);
-			} else {
-				setComposeTabBlocked(true);
+			if (!automationWebhookUrl) {
+				setError(contactForm.errorServiceUnavailable);
+				return;
 			}
-			setStatus('success');
+			setStatus('submitting');
+			try {
+				const response: Response = await fetch(automationWebhookUrl, {
+					method: 'POST',
+					headers: { 'Content-Type': 'application/json' },
+					body: JSON.stringify(payload),
+				});
+				if (!response.ok) {
+					throw new Error(`Automation request failed with status ${response.status}`);
+				}
+				setStatus('success');
+				setName('');
+				setEmail('');
+				setTopic('');
+				setMessage('');
+			} catch {
+				setStatus('idle');
+				setError(contactForm.errorServiceUnavailable);
+			}
 		},
-		[name, email, message, gmailComposeUrl, contactForm.errorRequired],
+		[payload, contactForm.errorRequired, contactForm.errorServiceUnavailable],
 	);
 	const formClassName: string = 'glass-panel space-y-6 rounded-2xl p-8 md:p-10';
 	if (reduceMotion) {
 		return (
 			<form className={formClassName} onSubmit={onSubmit} noValidate>
 				<ContactConciergeFormFields
-					composeTabBlocked={composeTabBlocked}
 					contactForm={contactForm}
-					gmailComposeUrl={gmailComposeUrl}
 					name={name}
 					setName={setName}
 					email={email}
@@ -76,7 +96,6 @@ export function ContactConciergeForm({ contactForm, primaryEmail }: Props) {
 					setMessage={setMessage}
 					error={error}
 					status={status}
-					primaryEmail={primaryEmail}
 				/>
 			</form>
 		);
@@ -92,9 +111,7 @@ export function ContactConciergeForm({ contactForm, primaryEmail }: Props) {
 			transition={{ ...weightedChildTween, delay: 0.12 }}
 		>
 			<ContactConciergeFormFields
-				composeTabBlocked={composeTabBlocked}
 				contactForm={contactForm}
-				gmailComposeUrl={gmailComposeUrl}
 				name={name}
 				setName={setName}
 				email={email}
@@ -105,16 +122,13 @@ export function ContactConciergeForm({ contactForm, primaryEmail }: Props) {
 				setMessage={setMessage}
 				error={error}
 				status={status}
-				primaryEmail={primaryEmail}
 			/>
 		</motion.form>
 	);
 }
 
 type FieldsProps = {
-	readonly composeTabBlocked: boolean;
 	readonly contactForm: UiMessages['contactForm'];
-	readonly gmailComposeUrl: string;
 	readonly name: string;
 	readonly setName: (value: string) => void;
 	readonly email: string;
@@ -125,13 +139,10 @@ type FieldsProps = {
 	readonly setMessage: (value: string) => void;
 	readonly error: string;
 	readonly status: FormStatus;
-	readonly primaryEmail: string;
 };
 
 function ContactConciergeFormFields({
-	composeTabBlocked,
 	contactForm,
-	gmailComposeUrl,
 	name,
 	setName,
 	email,
@@ -142,9 +153,8 @@ function ContactConciergeFormFields({
 	setMessage,
 	error,
 	status,
-	primaryEmail,
 }: FieldsProps) {
-	const successParts: string[] = contactForm.success.split('__EMAIL__');
+	const isSubmitting: boolean = status === 'submitting';
 	return (
 		<>
 			<div className="grid gap-6 md:grid-cols-2">
@@ -161,7 +171,8 @@ function ContactConciergeFormFields({
 						onChange={(e) => {
 							setName(e.target.value);
 						}}
-						className="w-full rounded-xl border border-white/15 bg-white/[0.04] px-4 py-3 text-sm text-pearl outline-none transition placeholder:text-mist/60 focus:border-accent/60"
+						disabled={isSubmitting}
+						className="w-full rounded-xl border border-white/15 bg-white/4 px-4 py-3 text-sm text-pearl outline-none transition placeholder:text-mist/60 focus:border-accent/60"
 						placeholder={contactForm.namePlaceholder}
 					/>
 				</div>
@@ -179,7 +190,8 @@ function ContactConciergeFormFields({
 						onChange={(e) => {
 							setEmail(e.target.value);
 						}}
-						className="w-full rounded-xl border border-white/15 bg-white/[0.04] px-4 py-3 text-sm text-pearl outline-none transition placeholder:text-mist/60 focus:border-accent/60"
+						disabled={isSubmitting}
+						className="w-full rounded-xl border border-white/15 bg-white/4 px-4 py-3 text-sm text-pearl outline-none transition placeholder:text-mist/60 focus:border-accent/60"
 						placeholder={contactForm.emailPlaceholder}
 					/>
 				</div>
@@ -196,7 +208,8 @@ function ContactConciergeFormFields({
 					onChange={(e) => {
 						setTopic(e.target.value);
 					}}
-					className="w-full rounded-xl border border-white/15 bg-white/[0.04] px-4 py-3 text-sm text-pearl outline-none transition placeholder:text-mist/60 focus:border-accent/60"
+					disabled={isSubmitting}
+					className="w-full rounded-xl border border-white/15 bg-white/4 px-4 py-3 text-sm text-pearl outline-none transition placeholder:text-mist/60 focus:border-accent/60"
 					placeholder={contactForm.topicPlaceholder}
 				/>
 			</div>
@@ -212,7 +225,8 @@ function ContactConciergeFormFields({
 					onChange={(e) => {
 						setMessage(e.target.value);
 					}}
-					className="w-full resize-y rounded-xl border border-white/15 bg-white/[0.04] px-4 py-3 text-sm text-pearl outline-none transition placeholder:text-mist/60 focus:border-accent/60"
+					disabled={isSubmitting}
+					className="w-full resize-y rounded-xl border border-white/15 bg-white/4 px-4 py-3 text-sm text-pearl outline-none transition placeholder:text-mist/60 focus:border-accent/60"
 					placeholder={contactForm.messagePlaceholder}
 				/>
 			</div>
@@ -222,37 +236,18 @@ function ContactConciergeFormFields({
 				</p>
 			) : null}
 			{status === 'success' ? (
-				<div className="space-y-3" role="status">
-					<p className="text-sm text-accent">
-						{successParts[0]}
-						<a className="underline underline-offset-4" href={`mailto:${primaryEmail}`}>
-							{primaryEmail}
-						</a>
-						{successParts[1] ?? ''}
-					</p>
-					{composeTabBlocked ? (
-						<p className="text-sm leading-relaxed text-mist">
-							{contactForm.composeFallbackHint}{' '}
-							<a
-								className="font-semibold text-accent underline underline-offset-4 hover:text-pearl"
-								href={gmailComposeUrl}
-								target="_blank"
-								rel="noreferrer"
-							>
-								{contactForm.composeFallbackAction}
-							</a>
-						</p>
-					) : null}
-				</div>
+				<p className="text-sm text-accent" role="status">
+					{contactForm.success}
+				</p>
 			) : null}
 			<button
 				type="submit"
+				disabled={isSubmitting}
 				className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-accent py-3.5 text-sm font-semibold text-void transition hover:bg-pearl md:w-auto md:px-10"
 			>
 				{contactForm.submit}
 				<Send className="size-4" aria-hidden="true" />
 			</button>
-			<p className="text-xs leading-relaxed text-mist">{contactForm.footnote}</p>
 		</>
 	);
 }

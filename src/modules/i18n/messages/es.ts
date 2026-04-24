@@ -231,15 +231,11 @@ export const es: UiMessages = {
 		topicPlaceholder: 'Liderazgo fraccional, revisión de arquitectura, taller…',
 		messagePlaceholder:
 			'Contexto, plazos y restricciones: lo mismo que le contarías a un socio el día cero.',
-		submit: 'Abrir en Gmail',
-		footnote:
-			'Este formulario no guarda datos en servidor: abre Gmail en el navegador con el borrador listo. Debes tener sesión en Google para que funcione. Luego puedes conectar Formspree, Resend o tu CRM.',
-		success:
-			'Gmail debería abrirse en una pestaña nueva con tu borrador. Si el navegador bloqueó la ventana, inténtalo de nuevo o escribe directamente a __EMAIL__.',
+		submit: 'Enviar consulta',
+		success: 'Gracias. Tu consulta se envió correctamente. Te responderé pronto.',
 		errorRequired: 'Nombre, correo y mensaje son obligatorios.',
-		composeFallbackHint:
-			'Si no se abrió una pestaña nueva, el navegador pudo bloquearla. Abre el borrador aquí sin salir del portafolio:',
-		composeFallbackAction: 'Abrir redacción en Gmail',
+		errorServiceUnavailable:
+			'El endpoint de automatización no está configurado todavía. Agrega las variables de entorno y vuelve a intentarlo.',
 	},
 	footer: {
 		writing: 'Escritos',

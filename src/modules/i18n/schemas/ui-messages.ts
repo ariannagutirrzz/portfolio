@@ -125,11 +125,9 @@ export type UiMessages = {
 		readonly topicPlaceholder: string;
 		readonly messagePlaceholder: string;
 		readonly submit: string;
-		readonly footnote: string;
 		readonly success: string;
 		readonly errorRequired: string;
-		readonly composeFallbackHint: string;
-		readonly composeFallbackAction: string;
+		readonly errorServiceUnavailable: string;
 	};
 	readonly footer: {
 		readonly writing: string;
