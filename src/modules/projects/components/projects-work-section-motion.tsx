@@ -33,15 +33,15 @@ export function ProjectsWorkSectionMotion({ projects, projectsCopy, archiveHref,
 	const reduceMotion: boolean | null = useReducedMotion();
 	if (reduceMotion) {
 		return (
-			<section id="work" className="scroll-mt-24 border-b border-white/10 px-6 py-28 sm:px-10 lg:px-16" aria-labelledby="work-heading">
-				<div className="mx-auto max-w-6xl">
+			<section id="work" className="scroll-mt-24 border-b border-white/10 px-6 py-20 sm:px-10 sm:py-24 lg:px-16 lg:py-24" aria-labelledby="work-heading">
+				<div className="mx-auto max-w-5xl">
 					<div className="flex flex-col gap-8">
 						<div className="max-w-2xl">
 							<p className="text-xs font-semibold uppercase tracking-[0.28em] text-accent">{projectsCopy.eyebrow}</p>
 							<h2 id="work-heading" className="mt-4 font-serif text-4xl tracking-tight text-pearl sm:text-5xl">
 								{projectsCopy.title}
 							</h2>
-							<p className="mt-5 text-lg leading-relaxed text-mist">{projectsCopy.intro}</p>
+							<p className="mt-5 text-base leading-relaxed text-mist sm:text-lg">{projectsCopy.intro}</p>
 						</div>
 					</div>
 					<div className="mt-16 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4 lg:grid-flow-dense">
@@ -62,15 +62,15 @@ export function ProjectsWorkSectionMotion({ projects, projectsCopy, archiveHref,
 		);
 	}
 	return (
-		<section id="work" className="scroll-mt-24 border-b border-white/10 px-6 py-28 sm:px-10 lg:px-16" aria-labelledby="work-heading">
-			<div className="mx-auto max-w-6xl">
+		<section id="work" className="scroll-mt-24 border-b border-white/10 px-6 py-20 sm:px-10 sm:py-24 lg:px-16 lg:py-24" aria-labelledby="work-heading">
+			<div className="mx-auto max-w-5xl">
 				<motion.div className="flex flex-col gap-8" variants={intro} initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-10% 0px' }}>
 					<motion.div className="max-w-2xl" variants={introBlock}>
 						<p className="text-xs font-semibold uppercase tracking-[0.28em] text-accent">{projectsCopy.eyebrow}</p>
 						<h2 id="work-heading" className="mt-4 font-serif text-4xl tracking-tight text-pearl sm:text-5xl">
 							{projectsCopy.title}
 						</h2>
-						<p className="mt-5 text-lg leading-relaxed text-mist">{projectsCopy.intro}</p>
+						<p className="mt-5 text-base leading-relaxed text-mist sm:text-lg">{projectsCopy.intro}</p>
 					</motion.div>
 				</motion.div>
 				<div className="mt-16 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4 lg:grid-flow-dense">

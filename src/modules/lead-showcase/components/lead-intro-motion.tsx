@@ -33,7 +33,7 @@ export function LeadIntroMotion({ lead }: Props) {
 				<h2 id="lead-heading" className="mt-4 font-serif text-4xl tracking-tight text-pearl sm:text-5xl">
 					{lead.title}
 				</h2>
-				<p className="mt-6 text-lg leading-relaxed text-mist">{lead.body}</p>
+				<p className="mt-5 text-base leading-relaxed text-mist sm:text-lg">{lead.body}</p>
 			</div>
 		);
 	}
@@ -45,7 +45,7 @@ export function LeadIntroMotion({ lead }: Props) {
 			<motion.h2 id="lead-heading" className="mt-4 font-serif text-4xl tracking-tight text-pearl sm:text-5xl" variants={block}>
 				{lead.title}
 			</motion.h2>
-			<motion.p className="mt-6 text-lg leading-relaxed text-mist" variants={block}>
+			<motion.p className="mt-5 text-base leading-relaxed text-mist sm:text-lg" variants={block}>
 				{lead.body}
 			</motion.p>
 		</motion.div>

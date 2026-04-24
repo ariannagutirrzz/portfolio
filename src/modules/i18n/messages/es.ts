@@ -33,17 +33,17 @@ export const es: UiMessages = {
 		services: 'Servicios',
 		products: 'Productos',
 		contact: 'Contacto',
-		book: 'Agendar',
+		book: 'Hablemos',
 		portfolioLabel: 'Portafolio',
 	},
 	hero: {
 		roleBadge: 'Full-Stack Engineer · Simplest.guru',
-		headlineLine1: 'Sistemas web a escala retail',
-		headlineLine2: 'y full-stack con disciplina',
+		headlineLine1: 'Software que acompaña',
+		headlineLine2: 'a equipos y tiendas de verdad',
 		tagline:
-			'Desarrolladora full-stack proactiva liderando rediseños y migraciones para 85+ supermercados en EE. UU., con foco en datos en tiempo real (WebSockets), apps móviles con ESL y APIs en Node—mientras termino Ingeniería Informática en URBE.',
-		primaryCta: 'Iniciar conversación',
-		secondaryCta: 'Ver archivo completo de proyectos',
+			'Soy Arianna—full-stack engineer en Simplest.guru. Ayudo a sacar adelante dashboards retail, APIs en Node, WebSockets y flujos móviles para 85+ supermercados en EE. UU., más proyectos de tributos y facturación—mientras termino Ingeniería Informática en URBE.',
+		primaryCta: 'Escríbeme',
+		secondaryCta: 'Ver todos los proyectos',
 		secondaryCtaHref: '/es/projects/',
 		panelTitle: 'Principios de operación',
 		panelBullets: [
@@ -53,9 +53,9 @@ export const es: UiMessages = {
 		],
 	},
 	lead: {
-		eyebrow: 'Liderazgo en producción',
+		eyebrow: 'Lo que construyo',
 		title: 'De dashboards retail a tributos municipales',
-		body: 'En Simplest.guru lidero modernización full-stack para una operación nacional de retail, asumiendo superficies en React, servicios Node.js, WebSockets y endurecimiento operativo. En Sitrive entregué una plataforma tributaria bilingüe con form builder dinámico y UI guiada por Storybook. Proyectos propios cubren inventario, facturación y herramientas clínicas con IA.',
+		body: 'En el día a día modernizo una operación nacional de retail: React arriba, Node y Postgres abajo, WebSockets cuando hace falta que se sienta al instante. En Sitrive armé la plataforma tributaria bilingüe con formularios dinámicos y UI en Storybook. Aparte: inventario, integraciones de cobro y un poco de tooling clínico con IA.',
 		pillars: [
 			{
 				title: 'Confiabilidad a escala retail',
@@ -72,7 +72,7 @@ export const es: UiMessages = {
 		],
 		decisionTitle: 'Cómo se toman las decisiones',
 		decisionBody:
-			'RFCs con tradeoffs explícitos, ADRs que envejecen bien y revisiones de diseño donde UX, seguridad y operabilidad son una sola conversación. No es teatro de consenso: es un modelo compartido de riesgo.',
+			'Me gusta dejar las cosas por escrito: RFCs con tradeoffs, ADRs que sigan teniendo sentido meses después, y revisiones donde UX, seguridad y operación van juntas. Menos teatro, más claridad.',
 		quote: '“De la necesidad al resultado: yo lidero el camino.”',
 		quoteCite: '— Arianna Vega',
 	},
@@ -213,8 +213,8 @@ export const es: UiMessages = {
 	},
 	contact: {
 		eyebrow: 'Contacto',
-		title: 'Recepción concierge',
-		body: 'Describe el problema—fricción de plataforma, riesgo de entrega o brecha de liderazgo—y recibirás una respuesta concreta con siguientes pasos, no un autoresponder interminable.',
+		title: 'Conectemos',
+		body: 'Cuéntame qué quieres resolver (aunque sea a grandes rasgos). Te respondo con algo concreto que puedas usar, no con un muro de texto corporativo.',
 		responseLabel: 'Tiempo de respuesta',
 		responseValue: 'Dentro de dos días hábiles para nuevos mensajes.',
 		engagementLabel: 'Modalidades',

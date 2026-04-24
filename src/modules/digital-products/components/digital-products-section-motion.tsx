@@ -48,14 +48,14 @@ export function DigitalProductsSectionMotion({ messages }: Props) {
 	const reduceMotion: boolean | null = useReducedMotion();
 	if (reduceMotion) {
 		return (
-			<section id="store" className="scroll-mt-24 border-b border-white/10 px-6 py-28 sm:px-10 lg:px-16" aria-labelledby="store-heading">
-				<div className="mx-auto max-w-6xl">
+			<section id="store" className="scroll-mt-24 border-b border-white/10 px-6 py-20 sm:px-10 sm:py-24 lg:px-16 lg:py-24" aria-labelledby="store-heading">
+				<div className="mx-auto max-w-5xl">
 					<div className="max-w-2xl">
 						<p className="text-xs font-semibold uppercase tracking-[0.28em] text-accent">{store.eyebrow}</p>
 						<h2 id="store-heading" className="mt-4 font-serif text-4xl tracking-tight text-pearl sm:text-5xl">
 							{store.title}
 						</h2>
-						<p className="mt-5 text-lg leading-relaxed text-mist">{store.intro}</p>
+						<p className="mt-5 text-base leading-relaxed text-mist sm:text-lg">{store.intro}</p>
 					</div>
 					<ul className="mt-16 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
 						{store.items.map((item: StorefrontItemCopy) => (
@@ -69,8 +69,8 @@ export function DigitalProductsSectionMotion({ messages }: Props) {
 		);
 	}
 	return (
-		<section id="store" className="scroll-mt-24 border-b border-white/10 px-6 py-28 sm:px-10 lg:px-16" aria-labelledby="store-heading">
-			<div className="mx-auto max-w-6xl">
+		<section id="store" className="scroll-mt-24 border-b border-white/10 px-6 py-20 sm:px-10 sm:py-24 lg:px-16 lg:py-24" aria-labelledby="store-heading">
+			<div className="mx-auto max-w-5xl">
 				<motion.div className="max-w-2xl" variants={intro} initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-10% 0px' }}>
 					<motion.p className="text-xs font-semibold uppercase tracking-[0.28em] text-accent" variants={block}>
 						{store.eyebrow}
@@ -78,7 +78,7 @@ export function DigitalProductsSectionMotion({ messages }: Props) {
 					<motion.h2 id="store-heading" className="mt-4 font-serif text-4xl tracking-tight text-pearl sm:text-5xl" variants={block}>
 						{store.title}
 					</motion.h2>
-					<motion.p className="mt-5 text-lg leading-relaxed text-mist" variants={block}>
+					<motion.p className="mt-5 text-base leading-relaxed text-mist sm:text-lg" variants={block}>
 						{store.intro}
 					</motion.p>
 				</motion.div>

@@ -11,12 +11,12 @@
 	--color-ink: #0e0f12;
 	--color-slate: #16181d;
 	--color-graphite: #1f232b;
-	--color-mist: #8b93a7;
-	--color-pearl: #e8eaf0;
+	--color-mist: #9a9aa8;
+	--color-pearl: #f0ede6;
 	--color-ivory: #f6f4ef;
-	--color-accent: #c9a962;
-	--color-accent-soft: rgba(201, 169, 98, 0.14);
-	--shadow-glass: 0 24px 80px rgba(0, 0, 0, 0.45);
+	--color-accent: #d4b76a;
+	--color-accent-soft: rgba(212, 183, 106, 0.16);
+	--shadow-glass: 0 18px 48px rgba(0, 0, 0, 0.38);
 }
 
 @layer base {
@@ -60,7 +60,7 @@
 }
 
 @utility glass-panel {
-	@apply border border-white/10 bg-white/[0.04] backdrop-blur-xl;
+	@apply border border-white/12 bg-white/[0.055] backdrop-blur-xl;
 	box-shadow: var(--shadow-glass);
 }
 [data-theme="light"] .glass-panel {

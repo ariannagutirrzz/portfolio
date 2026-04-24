@@ -30,7 +30,7 @@ export function HeroLeftStackMotion({ hero }: Props) {
 	const reduceMotion: boolean | null = useReducedMotion();
 	if (reduceMotion) {
 		return (
-			<div className="max-w-3xl space-y-8">
+			<div className="max-w-3xl space-y-7">
 				<p className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-4 py-1.5 text-xs font-medium uppercase tracking-[0.22em] text-mist">
 					<Sparkles className="size-3.5 text-accent" aria-hidden="true" />
 					{hero.roleBadge}
@@ -38,7 +38,7 @@ export function HeroLeftStackMotion({ hero }: Props) {
 				<div id="hero-heading">
 					<HeroKineticHeadline hero={hero} />
 				</div>
-				<p className="max-w-xl text-lg leading-relaxed text-mist">{hero.tagline}</p>
+				<p className="max-w-xl text-base leading-relaxed text-mist sm:text-lg">{hero.tagline}</p>
 				<div className="flex flex-wrap items-center gap-4">
 					<a
 						href="#contact"
@@ -61,7 +61,7 @@ export function HeroLeftStackMotion({ hero }: Props) {
 		);
 	}
 	return (
-		<motion.div className="max-w-3xl space-y-8" variants={container} initial="hidden" animate="visible">
+		<motion.div className="max-w-3xl space-y-7" variants={container} initial="hidden" animate="visible">
 			<motion.p
 				className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-4 py-1.5 text-xs font-medium uppercase tracking-[0.22em] text-mist"
 				variants={block}
@@ -72,7 +72,7 @@ export function HeroLeftStackMotion({ hero }: Props) {
 			<div id="hero-heading">
 				<HeroKineticHeadline hero={hero} />
 			</div>
-			<motion.p className="max-w-xl text-lg leading-relaxed text-mist" variants={block}>
+			<motion.p className="max-w-xl text-base leading-relaxed text-mist sm:text-lg" variants={block}>
 				{hero.tagline}
 			</motion.p>
 			<motion.div className="flex flex-wrap items-center gap-4" variants={block}>

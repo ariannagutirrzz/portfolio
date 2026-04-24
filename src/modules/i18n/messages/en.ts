@@ -33,17 +33,17 @@ export const en: UiMessages = {
 		services: 'Services',
 		products: 'Products',
 		contact: 'Contact',
-		book: 'Book',
+		book: 'Say hi',
 		portfolioLabel: 'Portfolio',
 	},
 	hero: {
 		roleBadge: 'Full-Stack Engineer · Simplest.guru',
-		headlineLine1: 'Retail-grade web systems',
-		headlineLine2: '& disciplined full-stack delivery',
+		headlineLine1: 'Software that keeps up',
+		headlineLine2: 'with real teams and real stores',
 		tagline:
-			'Proactive full-stack developer leading redesigns and migrations for 85+ US supermarkets, tightening real-time data paths (WebSockets), mobile ESL workflows, and backend APIs—while finishing a Bachelor’s in Informatics Engineering at URBE.',
-		primaryCta: 'Start a conversation',
-		secondaryCta: 'Browse full project archive',
+			"I'm Arianna—full-stack engineer at Simplest.guru. I help ship retail dashboards, Node APIs, WebSockets, and mobile flows for 85+ US supermarkets, plus tax and billing side projects—while I finish my Informatics Engineering degree at URBE.",
+		primaryCta: 'Say hello',
+		secondaryCta: 'Browse all projects',
 		secondaryCtaHref: '/en/projects/',
 		panelTitle: 'Operating principles',
 		panelBullets: [
@@ -53,9 +53,9 @@ export const en: UiMessages = {
 		],
 	},
 	lead: {
-		eyebrow: 'Leadership in production',
+		eyebrow: 'What I ship',
 		title: 'From supermarket dashboards to municipal tax flows',
-		body: 'At Simplest.guru I drive full-stack modernization for a nationwide retail stack, owning React surfaces, Node.js services, WebSockets, and operational hardening. At Sitrive I shipped a bilingual tax platform with a dynamic form builder and Storybook-driven UI. Side projects span inventory, billing integrations, and AI-assisted clinical tooling.',
+		body: "Day to day I modernize a nationwide retail stack—React on the surface, Node and Postgres underneath, WebSockets when things need to feel instant. I also built Sitrive's bilingual tax platform (dynamic forms + Storybook). On the side: inventory, billing integrations, and a little AI-assisted clinical tooling.",
 		pillars: [
 			{
 				title: 'Retail-scale reliability',
@@ -72,7 +72,7 @@ export const en: UiMessages = {
 		],
 		decisionTitle: 'How decisions get made',
 		decisionBody:
-			'RFCs with explicit tradeoffs, ADRs that age well, and design reviews that treat UX, security, and operability as one conversation. The goal is not consensus theater—it is a shared model of risk.',
+			"I like writing things down—RFCs with tradeoffs, ADRs that still make sense months later, and reviews where UX, security, and ops sit at the same table. Less theatre, more clarity.",
 		quote: '“From need to outcome: I lead the way.”',
 		quoteCite: '— Arianna Vega',
 	},
@@ -213,8 +213,8 @@ export const en: UiMessages = {
 	},
 	contact: {
 		eyebrow: 'Contact',
-		title: 'Concierge intake',
-		body: 'Share the shape of the problem—platform friction, delivery risk, or leadership gap—and you will receive a thoughtful reply with next steps, not an autoresponder novel.',
+		title: "Let's connect",
+		body: "Tell me what you're trying to fix—rough context is fine. I'll reply with something concrete you can act on, not a wall of corporate filler.",
 		responseLabel: 'Response window',
 		responseValue: 'Within two business days for new inquiries.',
 		engagementLabel: 'Engagement styles',
