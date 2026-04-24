@@ -20,6 +20,6 @@ const { messages } = Astro.props;
 	<HeroInteractiveBackdrop client:load />
 	<div class="relative z-10 mx-auto flex max-w-6xl flex-col gap-14 lg:flex-row lg:items-end lg:justify-between">
 		<HeroLeftStackMotion client:load hero={messages.hero} />
-		<HeroGlassPanelMotion client:load hero={messages.hero} />
+		<HeroGlassPanelMotion client:load />
 	</div>
 </section>
