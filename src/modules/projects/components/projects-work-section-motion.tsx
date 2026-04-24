@@ -4,6 +4,7 @@ import type { UiMessages } from '../../i18n/schemas/ui-messages';
 import { weightedChildTween, weightedStagger } from '../../motion/constants/weighted-motion';
 import type { ProjectCardPayload } from '../schemas/project-card-payload';
 import { ProjectBentoCardMotion } from './project-bento-card-motion';
+import { ProjectsFeaturedCarousel } from './projects-featured-carousel';
 
 type Props = {
 	readonly projects: ProjectCardPayload[];
@@ -73,30 +74,9 @@ export function ProjectsWorkSectionMotion({ projects, projectsCopy, archiveHref,
 						<p className="mt-5 text-base leading-relaxed text-mist sm:text-lg">{projectsCopy.intro}</p>
 					</motion.div>
 				</motion.div>
-				<div className="relative mt-16">
-					<div
-						className="-mx-6 touch-pan-x overflow-x-auto overflow-y-visible overscroll-x-contain pb-3 [scrollbar-color:rgba(77,140,238,0.45)_transparent] [scrollbar-width:thin] sm:-mx-10 lg:-mx-16"
-						aria-label={projectsCopy.projectRailAria}
-						role="region"
-						tabIndex={0}
-					>
-						<ul className="m-0 flex w-max list-none snap-x snap-mandatory gap-4 px-6 py-1 sm:px-10 lg:px-16">
-							{projects.map((project: ProjectCardPayload, index: number) => (
-								<li
-									key={project.id}
-									className="w-[min(22rem,calc(100vw-3rem))] shrink-0 snap-start sm:w-[min(24rem,calc(100vw-5rem))]"
-								>
-									<ProjectBentoCardMotion
-										cardLabels={projectsCopy.card}
-										index={index}
-										layout="rail"
-										project={project}
-									/>
-								</li>
-							))}
-						</ul>
-					</div>
-				</div>
+			</div>
+			<ProjectsFeaturedCarousel projects={projects} projectsCopy={projectsCopy} />
+			<div className="mx-auto max-w-5xl">
 				<motion.div
 					className="mt-12 flex justify-center border-t border-white/10 pt-10"
 					initial={{ opacity: 0, y: 10 }}

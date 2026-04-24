@@ -32,6 +32,7 @@ export function resolveProjectCardForLocale(
 			bentoSpan: d.bentoSpan,
 			order: d.order,
 			featured: d.featured,
+			coverImage: d.coverImage,
 		};
 	}
 	return {
@@ -47,5 +48,6 @@ export function resolveProjectCardForLocale(
 		bentoSpan: d.bentoSpan,
 		order: d.order,
 		featured: d.featured,
+		coverImage: d.coverImage,
 	};
 }

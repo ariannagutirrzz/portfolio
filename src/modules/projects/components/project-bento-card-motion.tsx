@@ -11,6 +11,8 @@ type Props = {
 	readonly cardLabels: UiMessages['projects']['card'];
 	/** `rail`: fixed-width horizontal strip; `bento`: grid spans from content. */
 	readonly layout?: 'bento' | 'rail';
+	/** When true, skip scroll-driven entry motion (e.g. featured carousel). */
+	readonly staticEntrance?: boolean;
 };
 
 const spanClass: Record<ProjectCardPayload['bentoSpan'], string> = {
@@ -19,18 +21,34 @@ const spanClass: Record<ProjectCardPayload['bentoSpan'], string> = {
 	hero: 'md:col-span-2',
 };
 
-export function ProjectBentoCardMotion({ project, index, cardLabels, layout = 'bento' }: Props) {
+export function ProjectBentoCardMotion({ project, index, cardLabels, layout = 'bento', staticEntrance = false }: Props) {
 	const reduceMotion: boolean | null = useReducedMotion();
 	const isRail: boolean = layout === 'rail';
+	const hasCover: boolean = typeof project.coverImage === 'string' && project.coverImage.trim().length > 0;
 	const baseClass: string = [
-		'group relative flex flex-col overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-white/[0.07] to-transparent p-6 transition duration-300 hover:-translate-y-1 hover:border-accent/45 hover:shadow-[0_12px_40px_rgba(77,140,238,0.2)]',
+		'group relative flex flex-col overflow-hidden rounded-2xl border border-white/10 p-6 transition duration-300 hover:-translate-y-1 hover:border-accent/45 hover:shadow-[0_12px_40px_rgba(77,140,238,0.2)]',
+		hasCover ? 'bg-void/50' : 'bg-gradient-to-br from-white/[0.07] to-transparent',
 		isRail ? 'h-full min-h-[22rem]' : spanClass[project.bentoSpan],
 	].join(' ');
+	const innerShellClass: string = hasCover ? 'relative z-10' : '';
 	if (reduceMotion) {
 		return (
 			<article className={baseClass}>
-				<ProjectCardInner cardLabels={cardLabels} isRail={isRail} project={project} />
+				{hasCover ? <ProjectCardCover imageUrl={project.coverImage!} /> : null}
+				<div className={innerShellClass}>
+					<ProjectCardInner cardLabels={cardLabels} hasCover={hasCover} isRail={isRail} project={project} />
+				</div>
 			</article>
+		);
+	}
+	if (staticEntrance) {
+		return (
+			<motion.article className={baseClass} initial={false}>
+				{hasCover ? <ProjectCardCover imageUrl={project.coverImage!} /> : null}
+				<div className={innerShellClass}>
+					<ProjectCardInner cardLabels={cardLabels} hasCover={hasCover} isRail={isRail} project={project} />
+				</div>
+			</motion.article>
 		);
 	}
 	return (
@@ -41,8 +59,24 @@ export function ProjectBentoCardMotion({ project, index, cardLabels, layout = 'b
 			viewport={{ once: true, margin: '-5% 0px' }}
 			transition={{ ...weightedChildTween, delay: index * 0.06 }}
 		>
-			<ProjectCardInner cardLabels={cardLabels} isRail={isRail} project={project} />
+			{hasCover ? <ProjectCardCover imageUrl={project.coverImage!} /> : null}
+			<div className={innerShellClass}>
+				<ProjectCardInner cardLabels={cardLabels} hasCover={hasCover} isRail={isRail} project={project} />
+			</div>
 		</motion.article>
+	);
+}
+
+type CoverProps = {
+	readonly imageUrl: string;
+};
+
+function ProjectCardCover({ imageUrl }: CoverProps) {
+	return (
+		<div className="pointer-events-none absolute inset-0 z-0" aria-hidden="true">
+			<div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url(${imageUrl})` }} />
+			<div className="absolute inset-0 bg-gradient-to-t from-void via-void/90 to-void/55" />
+		</div>
 	);
 }
 
@@ -50,9 +84,10 @@ type InnerProps = {
 	readonly project: ProjectCardPayload;
 	readonly cardLabels: UiMessages['projects']['card'];
 	readonly isRail: boolean;
+	readonly hasCover: boolean;
 };
 
-function ProjectCardInner({ project, cardLabels, isRail }: InnerProps) {
+function ProjectCardInner({ project, cardLabels, isRail, hasCover }: InnerProps) {
 	const stackClass: string = isRail ? 'flex min-h-0 flex-1 flex-col' : '';
 	return (
 		<div className={stackClass}>
@@ -104,7 +139,11 @@ function ProjectCardInner({ project, cardLabels, isRail }: InnerProps) {
 				{project.techStack.map((tech: string, techIndex: number) => (
 					<li
 						key={`${project.id}-tech-${techIndex}`}
-						className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-xs font-medium text-pearl/85"
+						className={`rounded-full border px-3 py-1 text-xs font-medium text-pearl/85 ${
+							hasCover
+								? 'border-white/15 bg-black/40 backdrop-blur-sm'
+								: 'border-white/10 bg-white/[0.04]'
+						}`}
 					>
 						{tech}
 					</li>

@@ -94,7 +94,10 @@ export const en: UiMessages = {
 			liveAria: 'Open live project:',
 		},
 		viewAllCta: 'Open full project archive →',
-		projectRailAria: 'Featured projects, scroll horizontally',
+		projectRailAria: 'Featured projects',
+		carouselPrevAria: 'Previous project',
+		carouselNextAria: 'Next project',
+		carouselGoToAria: 'Go to project {index} of {total}',
 	},
 	projectsArchive: {
 		title: 'Project archive',

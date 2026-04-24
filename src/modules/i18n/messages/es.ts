@@ -94,7 +94,10 @@ export const es: UiMessages = {
 			liveAria: 'Abrir proyecto en vivo:',
 		},
 		viewAllCta: 'Abrir archivo completo de proyectos →',
-		projectRailAria: 'Proyectos destacados, desplázate horizontalmente',
+		projectRailAria: 'Proyectos destacados',
+		carouselPrevAria: 'Proyecto anterior',
+		carouselNextAria: 'Proyecto siguiente',
+		carouselGoToAria: 'Ir al proyecto {index} de {total}',
 	},
 	projectsArchive: {
 		title: 'Archivo de proyectos',

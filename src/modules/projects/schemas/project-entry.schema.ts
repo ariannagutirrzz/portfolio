@@ -20,6 +20,8 @@ export const projectEntrySchema = z.object({
 	order: z.number().default(0),
 	/** When false, the card appears only on the full project archive page. */
 	featured: z.boolean().default(true),
+	/** Public URL for a hero background on cards, e.g. `/images/projects/my-shot.webp`. */
+	coverImage: z.string().optional(),
 });
 
 export type ProjectEntry = z.infer<typeof projectEntrySchema>;

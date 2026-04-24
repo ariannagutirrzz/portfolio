@@ -25,4 +25,6 @@ year: '2023–2026'
 bentoSpan: hero
 order: 1
 featured: true
+# Optional hero image for cards (place file under public/images/projects/):
+# coverImage: /images/projects/simplest-guru.webp
 ---

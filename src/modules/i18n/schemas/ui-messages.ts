@@ -85,8 +85,12 @@ export type UiMessages = {
 			readonly liveAria: string;
 		};
 		readonly viewAllCta: string;
-		/** Accessible name for the horizontal featured-project strip. */
+		/** Accessible name for the featured-project carousel region. */
 		readonly projectRailAria: string;
+		readonly carouselPrevAria: string;
+		readonly carouselNextAria: string;
+		/** Use `{index}` and `{total}` placeholders for dot buttons. */
+		readonly carouselGoToAria: string;
 	};
 	readonly projectsArchive: {
 		readonly title: string;
