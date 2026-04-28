@@ -24,7 +24,6 @@ function buildSectionHref(sectionId: string): string {
 const navItems: readonly { href: string; label: string }[] = [
 	{ href: buildSectionHref('leadership'), label: nav.leadership },
 	{ href: buildSectionHref('work'), label: nav.work },
-	{ href: buildSectionHref('store'), label: nav.products },
 	{ href: buildSectionHref('contact'), label: nav.contact },
 ] as const;
 const rawCvUrl: string | undefined = import.meta.env.PUBLIC_CV_URL;

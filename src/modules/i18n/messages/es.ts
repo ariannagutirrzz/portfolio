@@ -5,7 +5,7 @@ export const es: UiMessages = {
 	site: {
 		title: 'Arianna Vega — Full-Stack Engineer',
 		metaDescription:
-			'Full-Stack Engineer en Simplest.guru y estudiante de Ingeniería Informática (URBE). 3+ años construyendo React, Node.js y Next.js para retail en EE. UU., automatización tributaria e integraciones.',
+			'Full-Stack Engineer en Simplest.guru e Ingeniería en Informática (URBE). 3+ años construyendo React, Node.js y Next.js para retail en EE. UU., automatización tributaria e integraciones.',
 		titleTemplate: '%s · Arianna Vega',
 		personJobTitle: 'Full-Stack Engineer',
 		personKnowsAbout: [
@@ -38,19 +38,19 @@ export const es: UiMessages = {
 		downloadCv: 'Descargar CV',
 	},
 	hero: {
-		roleBadge: 'Full-Stack Engineer · Simplest.guru',
-		headlineLine1: 'Software que acompaña',
-		headlineLine2: 'a equipos y tiendas de verdad',
+		roleBadge: 'Portafolio',
+		headlineLine1: 'Arianna Vega',
+		headlineLine2: 'Ingeniería en Informática · Full Stack Engineer',
 		tagline:
-			'Soy Arianna—full-stack engineer en Simplest.guru. Ayudo a sacar adelante dashboards retail, APIs en Node, WebSockets y flujos móviles para 85+ supermercados en EE. UU., más proyectos de tributos y facturación—mientras termino Ingeniería Informática en URBE.',
+			'Graduada en Ingeniería en Informática en la URBE. Trabajo como full-stack en Simplest.guru con React, Node.js y producto junto a equipos reales. Este sitio resume lo que hago: más abajo verás proyectos y cómo me gusta encarar el día a día.',
 		primaryCta: 'Escríbeme',
 		secondaryCta: 'Ver todos los proyectos',
 		secondaryCtaHref: '/es/projects/',
-		panelTitle: 'Principios de operación',
+		panelTitle: 'Cómo me gusta trabajar',
 		panelBullets: [
-			'Claridad operativa: Jira, Git y documentación que QA puede ejecutar.',
-			'Ciclo completo: UI en React, APIs en Node y ajustes en PostgreSQL.',
-			'Victorias medibles: latencia, disponibilidad y carga de soporte.',
+			'Partir de claridad: Jira, Git y documentación que QA pueda seguir.',
+			'Recorrer el stack completo: React, Node y PostgreSQL cuando toca.',
+			'Que los resultados se noten: latencia, disponibilidad y menos fricción en soporte.',
 		],
 	},
 	lead: {

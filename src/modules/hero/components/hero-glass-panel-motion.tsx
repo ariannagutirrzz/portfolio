@@ -7,8 +7,13 @@ export function HeroGlassPanelMotion() {
 	if (reduceMotion) {
 		return (
 			<div className="w-full max-w-md rounded-2xl border border-white/15 bg-white/3 p-3 lg:mb-2">
-				<div className="overflow-hidden rounded-xl">
-					<img src="/images/arianna-vega-headshot.png" alt="Arianna Vega portrait" className="h-[440px] w-full object-cover object-center" loading="lazy" />
+				<div className="overflow-hidden rounded-lg">
+					<img
+						src="/images/arianna-vega-headshot.png"
+						alt="Arianna Vega portrait"
+						className="aspect-4/5 w-full object-cover object-top"
+						loading="lazy"
+					/>
 				</div>
 			</div>
 		);
@@ -20,8 +25,13 @@ export function HeroGlassPanelMotion() {
 			animate={{ opacity: 1, y: 0 }}
 			transition={{ ...weightedTween, delay: 0.35 }}
 		>
-			<div className="overflow-hidden rounded-xl">
-				<img src="/images/arianna-vega-headshot.png" alt="Arianna Vega portrait" className="h-[440px] w-full object-cover object-center" loading="lazy" />
+			<div className="overflow-hidden rounded-lg">
+				<img
+					src="/images/arianna-vega-headshot.png"
+					alt="Arianna Vega portrait"
+					className="aspect-4/5 w-full object-cover object-top"
+					loading="lazy"
+				/>
 			</div>
 		</motion.div>
 	);

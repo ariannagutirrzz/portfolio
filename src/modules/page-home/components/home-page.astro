@@ -1,7 +1,6 @@
 ---
 import BaseLayout from '../../../layouts/base-layout.astro';
 import ContactSection from '../../contact/components/contact-section.astro';
-import DigitalProductsSection from '../../digital-products/components/digital-products-section.astro';
 import HeroSection from '../../hero/components/hero-section.astro';
 import LeadShowcaseSection from '../../lead-showcase/components/lead-showcase-section.astro';
 import ProjectsBentoSection from '../../projects/components/projects-bento-section.astro';
@@ -24,6 +23,5 @@ const projectEntries = sortProjectEntries(filterFeaturedProjects(await getCollec
 	<HeroSection messages={messages} />
 	<LeadShowcaseSection messages={messages} />
 	<ProjectsBentoSection messages={messages} projects={projectEntries} />
-	<DigitalProductsSection messages={messages} />
 	<ContactSection messages={messages} />
 </BaseLayout>

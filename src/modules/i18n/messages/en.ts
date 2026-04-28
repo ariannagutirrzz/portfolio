@@ -5,7 +5,7 @@ export const en: UiMessages = {
 	site: {
 		title: 'Arianna Vega — Full-Stack Engineer',
 		metaDescription:
-			'Full-Stack Engineer at Simplest.guru and Informatics Engineering student. 3+ years shipping React, Node.js, and Next.js systems for retail scale, tax automation, and integrations.',
+			'Full-Stack Engineer at Simplest.guru and Informatics Engineering graduate (URBE). 3+ years shipping React, Node.js, and Next.js systems for retail scale, tax automation, and integrations.',
 		titleTemplate: '%s · Arianna Vega',
 		personJobTitle: 'Full-Stack Engineer',
 		personKnowsAbout: [
@@ -38,19 +38,19 @@ export const en: UiMessages = {
 		downloadCv: 'Download CV',
 	},
 	hero: {
-		roleBadge: 'Full-Stack Engineer · Simplest.guru',
-		headlineLine1: 'Software that keeps up',
-		headlineLine2: 'with real teams and real stores',
+		roleBadge: 'Portfolio',
+		headlineLine1: 'Arianna Vega',
+		headlineLine2: 'Informatics Engineering · Full Stack Engineer',
 		tagline:
-			"I'm Arianna—full-stack engineer at Simplest.guru. I help ship retail dashboards, Node APIs, WebSockets, and mobile flows for 85+ US supermarkets, plus tax and billing side projects—while I finish my Informatics Engineering degree at URBE.",
+			'Informatics Engineering graduate from URBE. I work as a full-stack engineer at Simplest.guru—React, Node.js, and shipping product with real teams. This site is my portfolio: scroll for projects and how I like to work day to day.',
 		primaryCta: 'Say hello',
 		secondaryCta: 'Browse all projects',
 		secondaryCtaHref: '/en/projects/',
-		panelTitle: 'Operating principles',
+		panelTitle: 'How I like to work',
 		panelBullets: [
-			'Lead with clarity: Jira, Git, and documented flows for QA.',
-			'Own the full slice: React UI, Node APIs, and PostgreSQL tuning.',
-			'Prefer measurable wins: latency, uptime, and support load.',
+			'Start from clarity: Jira, Git, and docs QA can actually run with.',
+			'Walk the full slice: React, Node, and PostgreSQL when the problem needs it.',
+			'Care about outcomes people feel: latency, uptime, and less support friction.',
 		],
 	},
 	lead: {
